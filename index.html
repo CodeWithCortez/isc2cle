@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISC2 Cleveland Chapter | Inspiring a Safe & Secure Cyber World</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Deleted Google Fonts; using specialized brand fonts via Tailwind -->
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Markdown Parser for AI Responses -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        white: 'rgb(var(--tw-color-white) / <alpha-value>)',
+                        black: 'rgb(var(--tw-color-black) / <alpha-value>)',
+                        gray: {
+                            300: 'rgb(var(--tw-color-gray-300) / <alpha-value>)',
+                            400: 'rgb(var(--tw-color-gray-400) / <alpha-value>)',
+                            500: 'rgb(var(--tw-color-gray-500) / <alpha-value>)',
+                            600: 'rgb(var(--tw-color-gray-600) / <alpha-value>)',
+                        },
+                        isc: {
+                            dark: 'rgb(var(--isc-dark) / <alpha-value>)',
+                            card: 'rgb(var(--isc-card) / <alpha-value>)',
+                            primary: 'rgb(var(--isc-primary) / <alpha-value>)',
+                            accent: 'rgb(var(--isc-accent) / <alpha-value>)',
+                            neon: 'rgb(var(--isc-neon) / <alpha-value>)',
+                            cyan: 'rgb(var(--isc-cyan) / <alpha-value>)',
+                            purple: 'rgb(var(--isc-purple) / <alpha-value>)',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Avenir', '"Avenir Next"', 'Nunito', 'sans-serif'],
+                        cyber: ['"Gill Sans"', '"Gill Sans MT"', 'Calibri', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --tw-color-white: 15 23 42;
+            --tw-color-black: 255 255 255;
+            --tw-color-gray-300: 100 116 139;
+            --tw-color-gray-400: 71 85 105;
+            --tw-color-gray-500: 51 65 85;
+            --tw-color-gray-600: 30 41 59;
+
+            --isc-dark: 248 250 252;
+            --isc-card: 255 255 255;
+            --isc-primary: 0 104 82;
+            --isc-accent: 14 165 233;
+            --isc-neon: 2 132 199;
+            --isc-cyan: 14 165 233;
+            --isc-purple: 99 102 241;
+        }
+
+        .dark {
+            --tw-color-white: 255 255 255;
+            --tw-color-black: 0 0 0;
+            --tw-color-gray-300: 209 213 219;
+            --tw-color-gray-400: 156 163 175;
+            --tw-color-gray-500: 107 114 128;
+            --tw-color-gray-600: 75 85 99;
+
+            --isc-dark: 2 6 23;
+            --isc-card: 15 23 42;
+            --isc-primary: 0 104 82;
+            --isc-accent: 149 214 0;
+            --isc-neon: 149 214 0;
+            --isc-cyan: 0 240 255;
+            --isc-purple: 139 92 246;
+        }
+
+        body {
+            background-color: rgb(var(--isc-dark));
+            color: rgb(var(--tw-color-white));
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Utilities */
+        .glass {
+            background: rgb(var(--isc-card) / 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgb(var(--tw-color-white) / 0.05);
+        }
+
+        .glass-card {
+            background: rgb(var(--isc-card) / 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgb(var(--tw-color-white) / 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgb(var(--isc-cyan) / 0.3);
+            box-shadow: 0 10px 40px -10px rgb(var(--isc-accent) / 0.15), 0 0 20px rgb(var(--isc-cyan) / 0.2);
+        }
+
+        .glass-primary {
+            background: rgb(var(--isc-primary) / 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgb(var(--isc-primary) / 0.5);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgb(var(--isc-dark));
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgb(var(--isc-card));
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgb(var(--isc-primary));
+        }
+
+        /* Neon Glow Text */
+        .text-glow {
+            text-shadow: 0 0 20px rgba(149, 214, 0, 0.3);
+        }
+
+        /* AI Glow */
+        .text-glow-purple {
+            text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+        }
+
+        /* Animated Grid Background */
+        .cyber-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }
+
+        /* Loading Spinner */
+        .loader {
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border-left-color: #95d600;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <!-- Global Native Dark Mode -->
+</head>
+
+<body class="antialiased">
+
+    <!-- Canvas Background for Hero -->
+    <canvas id="networkCanvas" class="fixed top-0 left-0 w-full h-full -z-10 opacity-40 pointer-events-none"></canvas>
+
+    <!-- Gradient Overlay -->
+    <div
+        class="fixed top-0 left-0 w-full h-full -z-20 bg-gradient-radial from-isc-primary/10 via-isc-dark to-isc-dark pointer-events-none">
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass border-b border-white/5 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <img src="./images/updated-transparent.png" alt="ISC2 Cleveland Logo" class="h-24 sm:h-28 w-auto object-contain">
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-sm font-medium text-gray-300 hover:text-isc-neon transition-colors">Home</a>
+                    <a href="#sponsorship" class="text-sm font-medium text-gray-300 hover:text-isc-neon transition-colors">Corporate Sponsorships</a>
+                    <a href="#leadership" class="text-sm font-medium text-gray-300 hover:text-isc-neon transition-colors">Leadership</a>
+                    <a href="#membership" class="text-sm font-medium text-gray-300 hover:text-isc-neon transition-colors">Membership</a>
+                    <a href="#events" class="text-sm font-medium text-gray-300 hover:text-isc-neon transition-colors">Events</a>
+                    <a href="#ai-toolkit" class="text-sm font-medium text-gray-300 hover:text-isc-neon transition-colors">AI Cyber Toolkit</a>
+                    <a href="#news-feed" class="text-sm font-medium text-gray-300 hover:text-isc-neon transition-colors">News</a>
+                    <a href="#faq" class="text-sm font-medium text-gray-300 hover:text-isc-neon transition-colors">FAQ</a>
+
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center gap-4">
+
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden glass border-t border-white/5 absolute w-full">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#home" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">Home</a>
+                <a href="#sponsorship" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">Corporate Sponsorships</a>
+                <a href="#leadership" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">Leadership</a>
+                <a href="#membership" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">Membership</a>
+                <a href="#events" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">Events</a>
+                <a href="#ai-toolkit" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">AI Cyber Toolkit</a>
+                <a href="#news-feed" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">News</a>
+                <a href="#faq" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">FAQ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-[90vh] flex flex-col items-center justify-center pt-48 pb-20 overflow-hidden">
+        <!-- photographic background overlay -->
+        <div class="absolute inset-0 bg-[url('./images/cleveland-skyline.jpg')] bg-cover bg-center bg-no-repeat opacity-20 dark:opacity-40 grayscale pointer-events-none"></div>
+        <div class="absolute inset-0 cyber-grid pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center flex flex-col items-center">
+            <div class="gsap-hero opacity-0 translate-y-10 w-full">
+                <!-- Mission Statement Badge -->
+                <div class="inline-flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
+                    <span class="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm font-bold text-gray-300 backdrop-blur-sm shadow-sm transition-colors hover:text-isc-cyan hover:border-isc-cyan/30">
+                        Connect.
+                    </span>
+                    <span class="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm font-bold text-gray-300 backdrop-blur-sm shadow-sm transition-colors hover:text-isc-cyan hover:border-isc-cyan/30">
+                        Educate.
+                    </span>
+                    <span class="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm font-bold text-gray-300 backdrop-blur-sm shadow-sm transition-colors hover:text-isc-cyan hover:border-isc-cyan/30">
+                        Inspire.
+                    </span>
+                    <span class="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm font-bold text-gray-300 backdrop-blur-sm shadow-sm transition-colors hover:text-isc-neon hover:border-isc-neon/30">
+                        Secure.
+                    </span>
+                </div>
+
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-cyber font-bold tracking-tight mb-4">
+                    ISC2 <span class="text-transparent bg-clip-text bg-gradient-to-r from-isc-primary via-isc-cyan to-isc-accent text-glow">CLEVELAND</span>
+                </h1>
+                
+                <h2 class="text-2xl md:text-3xl font-light text-white mb-6 tracking-wide">
+                    Advancing the Cybersecurity Industry & Professionals
+                </h2>
+                
+                <p class="mt-4 text-lg text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                    We are the premier community for cybersecurity professionals in Northeastern Ohio. Join us to network with experts, share knowledge, and collectively secure the digital future.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button
+                        onclick="document.getElementById('events').scrollIntoView({behavior:'smooth'})"
+                        class="px-8 py-3.5 rounded-full bg-isc-primary text-white font-bold hover:bg-isc-neon hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all duration-300">
+                        Attend a Meeting
+                    </button>
+                    <button
+                        onclick="document.getElementById('sponsorship').scrollIntoView({behavior:'smooth'})"
+                        class="px-8 py-3.5 rounded-full bg-white/5 border border-white/10 text-white font-bold hover:bg-white/10 hover:text-isc-accent transition-all duration-300 backdrop-blur-sm">
+                        Donate / Sponsor
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-gray-500">
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto text-center items-center">
+                <!-- Text Content -->
+                <div class="gsap-fade-up">
+                    <h2 class="text-isc-neon font-cyber text-sm tracking-widest uppercase mb-2">Who We Are</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold mb-6 text-white">Empowering Local <span
+                            class="text-isc-accent">Security Leaders</span></h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        The Cleveland Chapter of ISC2 provides members and other security professionals with the
+                        opportunity to share knowledge, grow professionally, educate others, and collaborate on
+                        projects.
+                    </p>
+                    <p class="text-gray-400 mb-8 leading-relaxed">
+                        We are a community-driven organization dedicated to advancing the field of cybersecurity in
+                        Northeastern Ohio. Whether you are a seasoned CISSP or just starting your journey, you have a
+                        place here.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left max-w-2xl mx-auto">
+                        <div class="p-6 rounded-xl bg-white/5 border border-white/5 flex flex-col items-center text-center">
+                            <i class="fa-solid fa-users text-isc-accent text-3xl mb-3"></i>
+                            <h4 class="font-bold text-white mb-1">Networking</h4>
+                            <p class="text-sm text-gray-500">Connect with local peers</p>
+                        </div>
+                        <div class="p-6 rounded-xl bg-white/5 border border-white/5 flex flex-col items-center text-center">
+                            <i class="fa-solid fa-graduation-cap text-isc-neon text-3xl mb-3"></i>
+                            <h4 class="font-bold text-white mb-1">Education</h4>
+                            <p class="text-sm text-gray-500">Earn CPE credits</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Mission Statement Banner -->
+    <section id="mission" class="py-20 relative overflow-hidden bg-isc-dark/80 border-y border-isc-primary/20">
+        <div class="absolute inset-0 bg-gradient-to-r from-isc-primary/10 to-isc-cyan/5 pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h2 class="text-isc-cyan font-cyber text-sm tracking-widest uppercase mb-4">Our Mission</h2>
+            <h3 class="text-4xl md:text-5xl lg:text-7xl font-cyber font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-isc-cyan via-white to-isc-accent drop-shadow-[0_0_15px_rgba(0,240,255,0.3)]">
+                CONNECT. EDUCATE. INSPIRE. SECURE.
+            </h3>
+        </div>
+    </section>
+
+    <!-- NEW: Leadership Team (Who is Who) -->
+    <!-- NEW: Leadership Team (Who is Who) -->
+    <section id="leadership" class="py-24 relative bg-[#020617]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 gsap-fade-up">
+                <h2 class="text-isc-cyan font-cyber text-sm tracking-widest uppercase mb-2">Who is Who</h2>
+                <h3 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Chapter <span class="text-isc-accent">Leadership</span></h3>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">Meet the dedicated professionals guiding the ISC2 Cleveland chapter forward.</p>
+            </div>
+            
+            <!-- Officers Tier -->
+            <div class="mb-10 text-center gsap-fade-up">
+                <h4 class="text-2xl font-bold text-white mb-2 pb-2 inline-block border-b border-white/10">Officers</h4>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <!-- President -->
+                <div class="glass-card p-6 rounded-2xl text-center group border-t border-t-isc-cyan/30 gsap-fade-up hover:-translate-y-2 hover:bg-white/5 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+                    <div class="w-32 h-32 mx-auto rounded-full xl:w-40 xl:h-40 bg-isc-primary/10 border-2 border-isc-cyan/30 mb-6 overflow-hidden relative shadow-[0_0_15px_rgba(0,240,255,0.1)] group-hover:border-isc-cyan transition-all flex items-center justify-center">
+                        <img src="https://media.licdn.com/dms/image/v2/D4E03AQEc77VaNhc-fg/profile-displayphoto-scale_200_200/B4EZtNaq8LJ0AY-/0/1766530396636?e=2147483647&v=beta&t=5wlNGKwVs7JG3daXWpMvdq2XsaPyrimFxq9WMVSxflA" alt="Ryan Yagatich" class="w-full h-full object-cover transition-all group-hover:scale-110">
+                    </div>
+                    <!-- Blank Name Placeholder -->
+                    <h4 class="text-xl font-bold text-white mb-1">Ryan Yagatich</h4>
+                    <p class="text-isc-cyan text-sm font-cyber tracking-wider mb-4">PRESIDENT</p>
+                    <div class="flex flex-col gap-2 mt-2">
+                        <a href="mailto:president@isc2chapter-cleveland.us" class="text-xs text-gray-600 dark:text-gray-400 hover:text-isc-primary dark:hover:text-isc-cyan transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-envelope"></i> president@
+                        </a>
+                        <a href="https://www.linkedin.com/in/yagatich/" target="_blank" rel="noopener noreferrer" class="text-xs text-gray-600 dark:text-gray-400 hover:text-[#0077b5] dark:hover:text-[#0077b5] transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-linkedin"></i> LinkedIn Profile
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Treasurer -->
+                <div class="glass-card p-6 rounded-2xl text-center group border-t border-t-isc-cyan/30 gsap-fade-up hover:-translate-y-2 hover:bg-white/5 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.5)]" style="transition-delay: 100ms;">
+                    <div class="w-32 h-32 mx-auto rounded-full xl:w-40 xl:h-40 bg-isc-primary/10 border-2 border-isc-cyan/30 mb-6 overflow-hidden relative shadow-[0_0_15px_rgba(0,240,255,0.1)] group-hover:border-isc-cyan transition-all flex items-center justify-center">
+                        <img src="./images/headshot-glasses.jpg" alt="Ted Kozenko" class="w-full h-full object-cover transition-all group-hover:scale-110">
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-1">Ted Kozenko</h4>
+                    <p class="text-isc-cyan text-sm font-cyber tracking-wider mb-4">TREASURER</p>
+                    <div class="flex flex-col gap-2 mt-2">
+                        <a href="mailto:treasurer@isc2chapter-cleveland.us" class="text-xs text-gray-600 dark:text-gray-400 hover:text-isc-primary dark:hover:text-isc-cyan transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-envelope"></i> treasurer@
+                        </a>
+                        <a href="https://www.linkedin.com/in/tedkozenko3/" target="_blank" rel="noopener noreferrer" class="text-xs text-gray-600 dark:text-gray-400 hover:text-[#0077b5] dark:hover:text-[#0077b5] transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-linkedin"></i> LinkedIn
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Membership -->
+                <div class="glass-card p-6 rounded-2xl text-center group border-t border-t-isc-cyan/30 gsap-fade-up hover:-translate-y-2 hover:bg-white/5 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.5)]" style="transition-delay: 200ms;">
+                    <div class="w-32 h-32 mx-auto rounded-full xl:w-40 xl:h-40 bg-isc-primary/10 border-2 border-isc-cyan/30 mb-6 overflow-hidden relative shadow-[0_0_15px_rgba(0,240,255,0.1)] group-hover:border-isc-cyan transition-all flex items-center justify-center">
+                        <img src="./images/geoff-sternecker.jpg" alt="Geoff Sternecker" class="w-full h-full object-cover transition-all group-hover:scale-110">
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-1">Geoff Sternecker</h4>
+                    <p class="text-isc-cyan text-sm font-cyber tracking-wider mb-4">MEMBERSHIP</p>
+                    <div class="flex flex-col gap-2 mt-2">
+                        <a href="mailto:membership@isc2chapter-cleveland.us" class="text-xs text-gray-600 dark:text-gray-400 hover:text-isc-primary dark:hover:text-isc-cyan transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-envelope"></i> membership@
+                        </a>
+                        <a href="https://www.linkedin.com/in/geoffsternecker/" target="_blank" rel="noopener noreferrer" class="text-xs text-gray-600 dark:text-gray-400 hover:text-[#0077b5] dark:hover:text-[#0077b5] transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-linkedin"></i> LinkedIn
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Secretary -->
+                <div class="glass-card p-6 rounded-2xl text-center group border-t border-t-isc-cyan/30 gsap-fade-up hover:-translate-y-2 hover:bg-white/5 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.5)]" style="transition-delay: 300ms;">
+                    <div class="w-32 h-32 mx-auto rounded-full xl:w-40 xl:h-40 bg-isc-primary/10 border-2 border-isc-cyan/30 mb-6 overflow-hidden relative shadow-[0_0_15px_rgba(0,240,255,0.1)] group-hover:border-isc-cyan transition-all flex items-center justify-center">
+                        <img src="./images/mary-brewer.jpg" alt="Mary Brewer" class="w-full h-full object-cover transition-all group-hover:scale-110">
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-1">Mary Brewer</h4>
+                    <p class="text-isc-cyan text-sm font-cyber tracking-wider mb-4">SECRETARY</p>
+                    <div class="flex flex-col gap-2 mt-2">
+                        <a href="mailto:secretary@isc2chapter-cleveland.us" class="text-xs text-gray-600 dark:text-gray-400 hover:text-isc-primary dark:hover:text-isc-cyan transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-envelope"></i> secretary@
+                        </a>
+                        <a href="https://www.linkedin.com/in/maryrbrewer/" target="_blank" rel="noopener noreferrer" class="text-xs text-gray-600 dark:text-gray-400 hover:text-[#0077b5] dark:hover:text-[#0077b5] transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-linkedin"></i> LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Volunteers Tier -->
+            <div class="mb-10 text-center gsap-fade-up">
+                <h4 class="text-2xl font-bold text-white mb-2 pb-2 inline-block border-b border-white/10">Key Volunteers</h4>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Volunteer 1: Jason -->
+                <div class="glass-card p-6 rounded-2xl group border-l-[3px] border-l-isc-accent gsap-fade-up hover:bg-white/5 transition-colors duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.3)] flex flex-col items-center gap-4 text-center">
+                    <div class="w-20 h-20 rounded-full bg-isc-primary/10 border-2 border-isc-accent/30 overflow-hidden relative flex-shrink-0 flex items-center justify-center group-hover:border-isc-accent transition-colors">
+                        <img src="./images/jason-williams.jpg" alt="Jason Williams" class="w-full h-full object-cover transition-all group-hover:scale-110">
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-white mb-1">Jason Williams</h4>
+                        <p class="text-isc-accent text-xs font-cyber tracking-wider mb-2">WEBMASTER</p>
+                        <a href="mailto:webmaster@isc2chapter-cleveland.us" class="text-xs text-gray-400 hover:text-isc-accent transition-colors flex items-center justify-center gap-2 w-full mt-1">
+                            <i class="fa-solid fa-envelope"></i> webmaster@
+                        </a>
+                        <a href="https://www.linkedin.com/in/jason-c-williams/" target="_blank" rel="noopener noreferrer" class="text-xs text-gray-600 dark:text-gray-400 hover:text-[#0077b5] dark:hover:text-[#0077b5] transition-colors flex items-center justify-center gap-2 w-full mt-2">
+                            <i class="fa-brands fa-linkedin"></i> LinkedIn Profile
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Volunteer 2: Kyle -->
+                <div class="glass-card p-6 rounded-2xl group border-l-[3px] border-l-isc-accent gsap-fade-up hover:bg-white/5 transition-colors duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.3)] flex flex-col items-center gap-4 text-center" style="transition-delay: 100ms;">
+                    <div class="w-20 h-20 rounded-full bg-isc-primary/10 border-2 border-isc-accent/30 overflow-hidden relative flex-shrink-0 flex items-center justify-center group-hover:border-isc-accent transition-colors">
+                        <img src="./images/kyle-wetzel.jpg" alt="Kyle Wetzel" class="w-full h-full object-cover transition-all group-hover:scale-110">
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-white mb-1">Kyle Wetzel</h4>
+                        <p class="text-isc-accent text-xs font-cyber tracking-wider mb-2">SPEAKER ORGANIZER</p>
+                        <a href="mailto:speakers@isc2chapter-cleveland.us" class="text-xs text-gray-400 hover:text-isc-accent transition-colors flex items-center justify-center gap-2 w-full mt-1">
+                            <i class="fa-solid fa-envelope"></i> speakers@
+                        </a>
+                        <a href="https://www.linkedin.com/in/kyle-wetzel/" target="_blank" rel="noopener noreferrer" class="text-xs text-gray-600 dark:text-gray-400 hover:text-[#0077b5] dark:hover:text-[#0077b5] transition-colors flex items-center justify-center gap-2 w-full mt-2">
+                            <i class="fa-brands fa-linkedin"></i> LinkedIn Profile
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Volunteer 3: Mary & Julia -->
+                <div class="glass-card p-6 rounded-2xl group border-l-[3px] border-l-isc-accent gsap-fade-up hover:bg-white/5 transition-colors duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.3)] flex flex-col items-center gap-4 text-center" style="transition-delay: 200ms;">
+                    <div class="w-20 h-20 rounded-full bg-isc-primary/10 border-2 border-isc-accent/30 overflow-hidden relative flex-shrink-0 flex items-center justify-center group-hover:border-isc-accent transition-colors">
+                        <img src="./images/julia-sternecker.jpg" alt="Julia Sternecker" class="w-full h-full object-cover transition-all group-hover:scale-110">
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <h4 class="text-lg font-bold text-white mb-1">Julia Sternecker <span class="mx-1 text-gray-500 font-normal">&</span> Mary Brewer</h4>
+                        <p class="text-isc-accent text-xs font-cyber tracking-wider mb-0">NOURISHMENT COMMITTEE</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- NEW: AI Cyber Toolkit Section -->
+    <section id="ai-toolkit" class="py-24 relative overflow-hidden bg-isc-dark/50 border-y border-isc-purple/20">
+        <!-- AI Background Glow -->
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-isc-purple/5 rounded-full blur-[120px] pointer-events-none">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 gsap-fade-up">
+                <h2 class="text-isc-purple font-cyber text-sm tracking-widest uppercase mb-2">Powered by Gemini</h2>
+                <h3 class="text-3xl md:text-5xl font-bold text-white">AI Cyber <span
+                        class="text-isc-purple text-glow-purple">Toolkit</span></h3>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">Explore our experimental LLM-powered tools designed to
+                    assist security professionals and educate members.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- Tool 1: Threat Briefing Generator -->
+                <div class="glass-card p-8 rounded-2xl border-t border-t-isc-purple/50 gsap-fade-up flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div
+                            class="w-10 h-10 rounded-full bg-isc-purple/20 flex items-center justify-center text-isc-purple">
+                            <i class="fa-solid fa-newspaper"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white">Threat Briefing Generator</h4>
+                    </div>
+
+                    <p class="text-gray-400 text-sm mb-6">Enter a topic (e.g., "Ransomware", "Zero Trust") to generate a
+                        3-point executive summary suitable for leadership updates.</p>
+
+                    <div class="space-y-4 mt-auto">
+                        <input type="text" id="briefing-input" placeholder="Enter cyber topic..."
+                            class="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-isc-purple transition-colors">
+
+                        <button onclick="generateBriefing()" id="briefing-btn"
+                            class="w-full py-3 bg-gradient-to-r from-isc-purple to-indigo-600 rounded-lg text-white font-bold hover:shadow-lg hover:shadow-isc-purple/25 transition-all flex justify-center items-center gap-2">
+                            <span>✨ Generate Briefing</span>
+                        </button>
+
+                        <div id="briefing-result"
+                            class="hidden mt-4 p-4 bg-white/5 rounded-lg border border-white/5 text-gray-300 text-sm leading-relaxed min-h-[100px]">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tool 2: Phishing Analyzer -->
+                <div class="glass-card p-8 rounded-2xl border-t border-t-isc-accent/50 gsap-fade-up flex flex-col h-full"
+                    style="transition-delay: 0.1s;">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div
+                            class="w-10 h-10 rounded-full bg-isc-accent/20 flex items-center justify-center text-isc-accent">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white">PhishGuard Analyzer</h4>
+                    </div>
+
+                    <p class="text-gray-400 text-sm mb-6">Paste a suspicious email or message body below. The AI will
+                        analyze tone, urgency, and inconsistencies to detect potential social engineering.</p>
+
+                    <div class="space-y-4 mt-auto">
+                        <textarea id="phish-input" rows="3" placeholder="Paste email text here..."
+                            class="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-isc-accent transition-colors resize-none"></textarea>
+
+                        <button onclick="analyzePhish()" id="phish-btn"
+                            class="w-full py-3 bg-gradient-to-r from-isc-accent to-blue-600 rounded-lg text-white font-bold hover:shadow-lg hover:shadow-isc-accent/25 transition-all flex justify-center items-center gap-2">
+                            <span>✨ Analyze Text</span>
+                        </button>
+
+                        <div id="phish-result"
+                            class="hidden mt-4 p-4 bg-white/5 rounded-lg border border-white/5 text-gray-300 text-sm leading-relaxed min-h-[100px]">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="py-24 bg-isc-card/50 relative overflow-hidden border-t border-white/5">
+        <!-- Background Decor -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-isc-primary/20 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 gsap-fade-up">
+                <h2 class="text-isc-neon font-cyber text-sm tracking-widest uppercase mb-2">Schedule & Bulletins</h2>
+                <h3 class="text-3xl md:text-5xl font-bold text-white">Upcoming <span class="text-isc-accent">Events</span></h3>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">See what we have planned for the year and review recent chapter announcements.</p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-8">
+                
+                <!-- Annual Calendar (Full Width) -->
+                <div class="glass-card rounded-2xl p-8 md:p-12 relative overflow-hidden gsap-fade-up">
+                    <h3 class="text-2xl font-bold text-white mb-2 border-b border-isc-primary/30 pb-4 flex items-center gap-3">
+                        <i class="fa-regular fa-calendar-days text-isc-cyan"></i> Annual Calendar
+                    </h3>
+                    
+                    <div class="space-y-6 mt-8">
+                        <!-- March Meetup -->
+                        <div class="group relative bg-[#020617]/40 border border-white/5 rounded-xl hover:bg-white/5 hover:border-isc-primary transition-all duration-300 overflow-hidden flex flex-col md:flex-row shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+                            <!-- Image Container -->
+                            <div class="md:w-2/5 aspect-video md:aspect-auto overflow-hidden relative bg-[#020617] flex-shrink-0 flex items-center justify-center border-b md:border-b-0 md:border-r border-white/10 p-4">
+                                <div class="absolute top-0 left-0 py-1 px-3 bg-isc-primary text-white text-xs font-bold rounded-br-lg z-10 shadow-lg">MEETUP</div>
+                                <img src="./images/march-meetup.jpg" alt="March Meetup" class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100">
+                            </div>
+                            
+                            <!-- Content -->
+                            <div class="p-6 flex flex-col justify-center flex-grow">
+                                <h4 class="text-xl font-bold text-white mb-2 group-hover:text-isc-cyan transition-colors">March Incident Response Meetup</h4>
+                                <div class="flex flex-wrap gap-4 text-sm text-gray-400 mb-4">
+                                    <span class="flex items-center gap-1"><i class="fa-solid fa-clock text-isc-accent"></i> 5:30 PM - 8:00 PM</span>
+                                    <span class="flex items-center gap-1"><i class="fa-solid fa-calendar text-isc-accent"></i> March 31, 2026</span>
+                                </div>
+                                <div class="text-gray-300 text-sm leading-relaxed mb-6 space-y-3">
+                                    <p>
+                                        <strong class="text-white block mb-1">Speaker: Kevin Dutkiewicz</strong>
+                                        <span class="text-isc-cyan font-bold block mb-2">Topic: "Incident Response Practice Run using Backdoors and Breaches"</span>
+                                    </p>
+                                    <p class="text-sm">
+                                        Kevin Dutkiewicz is the founder and CEO of Tech Brews, LLC, a managed service provider focused on educating and supporting small and medium-sized businesses. With over 20 years in IT infrastructure, from helpdesk support to Technical Director at Simplex-IT, Kevin has built his career on a simple principle: fixing what's broken and preventing future problems. A Board Member of the Stow-Munroe Falls Chamber of Commerce, he bridges technical expertise with business leadership, helping organizations navigate technology decisions with practical, real-world solutions.
+                                    </p>
+                                </div>
+                                <div class="mt-auto">
+                                    <a href="https://www.eventbrite.com/e/isc2-cleveland-chapter-meeting-march-2026-tickets-1984203352641?aff=ebdsoporgprofile" target="_blank" rel="noopener noreferrer" class="inline-block px-5 py-2.5 bg-isc-primary/20 hover:bg-isc-primary text-white font-bold text-sm rounded-lg transition-all border border-isc-primary/50 shadow-[0_0_10px_rgba(0,119,181,0.2)]">RSVP on Eventbrite <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CCSP Study Group Event -->
+                        <div class="group relative bg-[#020617]/40 border border-white/5 rounded-xl hover:bg-white/5 hover:border-isc-purple transition-all duration-300 overflow-hidden flex flex-col md:flex-row shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+                            <!-- Icon Container -->
+                            <div class="md:w-2/5 aspect-video md:aspect-auto overflow-hidden relative bg-black flex-shrink-0 flex items-center justify-center border-b md:border-b-0 md:border-r border-white/10 p-8">
+                                <div class="absolute inset-0 bg-isc-purple/10 pointer-events-none"></div>
+                                <div class="absolute top-0 left-0 py-1 px-3 bg-isc-purple text-white text-xs font-bold rounded-br-lg z-10 shadow-lg">STUDY GROUP</div>
+                                <i class="fa-solid fa-cloud text-[8rem] text-isc-purple/20 group-hover:text-isc-purple/40 transition-colors duration-700 group-hover:scale-110"></i>
+                                <span class="absolute text-3xl font-bold font-cyber tracking-widest text-white/50 group-hover:text-white transition-colors duration-700 group-hover:scale-110">CCSP</span>
+                            </div>
+                            
+                            <!-- Content -->
+                            <div class="p-6 flex flex-col justify-center flex-grow">
+                                <h4 class="text-xl font-bold text-white mb-2 group-hover:text-isc-purple transition-colors">CCSP Study Group: Chapter 4 - Security in the Cloud</h4>
+                                <div class="flex flex-wrap gap-4 text-sm text-gray-400 mb-4">
+                                    <span class="flex items-center gap-1"><i class="fa-solid fa-clock text-isc-purple"></i> 7:00 PM - 8:00 PM (EDT)</span>
+                                    <span class="flex items-center gap-1"><i class="fa-solid fa-calendar text-isc-purple"></i> Wed, Apr 8, 2026</span>
+                                    <span class="flex items-center gap-1"><i class="fa-solid fa-video text-isc-purple"></i> Virtual Event</span>
+                                </div>
+                                <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                                    In partnership with the ISC2 Pittsburgh Chapter, we are hosting a CCSP Study Group session focusing on <strong>Chapter 4: Security in the Cloud</strong>. Join us online for 1-hour of peer-driven collaboration and exam preparation.
+                                </p>
+                                <div class="mt-auto">
+                                    <a href="https://www.eventbrite.com/e/ccsp-study-group-chapter-4-security-in-the-cloud-tickets-1985481158593?aff=ebdsoporgprofile" target="_blank" rel="noopener noreferrer" class="inline-block px-5 py-2.5 bg-isc-purple/20 hover:bg-isc-purple text-white font-bold text-sm rounded-lg transition-all border border-isc-purple/50 shadow-[0_0_10px_rgba(168,85,247,0.2)]">RSVP on Eventbrite <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ISC2gether Volunteer Event -->
+                        <div class="group relative bg-[#020617]/40 border border-white/5 rounded-xl hover:bg-white/5 hover:border-isc-accent transition-all duration-300 overflow-hidden flex flex-col md:flex-row shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+                            <!-- Image Container -->
+                            <div class="md:w-2/5 aspect-video md:aspect-auto overflow-hidden relative bg-white flex-shrink-0 flex items-center justify-center border-b md:border-b-0 md:border-r border-white/10 p-4">
+                                <div class="absolute top-0 left-0 py-1 px-3 bg-isc-accent text-black text-xs font-bold rounded-br-lg z-10 shadow-lg">COMMUNITY</div>
+                                <img src="./images/isc2gether.png" alt="ISC2gether Cleveland" class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105">
+                            </div>
+                            
+                            <!-- Content -->
+                            <div class="p-6 flex flex-col justify-center flex-grow">
+                                <h4 class="text-xl font-bold text-white mb-2 group-hover:text-isc-accent transition-colors">ISC2gether Cleveland: Volunteer Today, Shape Tomorrow</h4>
+                                <div class="flex flex-wrap gap-4 text-sm text-gray-400 mb-4">
+                                    <span class="flex items-center gap-1"><i class="fa-solid fa-hand-holding-heart text-isc-accent"></i> Community Service</span>
+                                </div>
+                                <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                                    Giving back to Northeastern Ohio. The <strong>ISC2gether</strong> initiative is our dedicated community service event where we step away from the keyboards and volunteer locally to improve our city.
+                                </p>
+                                <div class="mt-auto">
+                                    <a href="https://www.eventbrite.com/e/isc2gether-cleveland-volunteer-today-shape-tomorrow-tickets-1984478407337?aff=odeccpebemailcampaigns&utm_source=eventbrite&utm_medium=ebcampaigns&utm_campaign=55170090&utm_term=ctabutton&mipa=ABIdvVt9ua1TWvaZFZLuJ0jBVURpo2KC8Rf-FCxrHT8wEfCBv_dOdS_m6O9lJXkeHcPV5Eu2f7V8QhKcweLPi739dwH14uWjLTCkphep3cedu0kUg2zwGaqAymvDGpqXq0HSikSx1P4mG_xXUnnD9oZ_cO1S2QfTFkkEOfcz2_r9XxJiOPF1jtLLpntoGXZ8DVVtULRYgapgULi25QvhAIxTBm41jix0oyIYF14R2jEZ1e7aV1yoLo4fnFQT6rEtCCsJVGk-hrVoHBSQJEqDmxGZN74gPzvFUg" target="_blank" rel="noopener noreferrer" class="inline-block px-5 py-2.5 bg-isc-accent/20 hover:bg-isc-accent hover:text-black text-isc-accent font-bold text-sm rounded-lg transition-all border border-isc-accent/50 shadow-[0_0_10px_rgba(11,219,161,0.2)]">Get Tickets on Eventbrite <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Holiday Buffer -->
+                        <div class="flex items-center gap-4 text-gray-500 text-sm bg-black/30 p-4 rounded-xl border border-dashed border-gray-700">
+                            <i class="fa-solid fa-snowflake text-lg w-8 text-center text-gray-600"></i>
+                            <div>
+                                <strong class="block text-gray-800 dark:text-gray-400">November & December</strong>
+                                <p class="text-sm text-gray-600 dark:text-gray-500 mt-1">No meetings scheduled. We take off for the holidays!</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- News Aggregator Section -->
+    <section id="news-feed" class="py-24 bg-isc-card/30 relative border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6 gsap-fade-up">
+                <div>
+                    <h2 class="text-isc-neon font-cyber text-sm tracking-widest uppercase mb-2">Global Intel</h2>
+                    <h3 class="text-3xl md:text-5xl font-bold text-white">Cyber <span class="text-isc-accent">News
+                            Feed</span></h3>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="filterNews('all')" id="filter-all"
+                        class="news-filter active px-4 py-2 rounded-full text-sm font-bold border border-isc-neon bg-isc-neon/10 text-isc-neon transition-all hover:bg-isc-neon hover:text-isc-dark">All</button>
+                    <button onclick="filterNews('ransomware')" id="filter-ransomware"
+                        class="news-filter px-4 py-2 rounded-full text-sm font-bold border border-white/10 text-gray-400 transition-all hover:border-isc-accent hover:text-isc-accent">Ransomware</button>
+                    <button onclick="filterNews('ai')" id="filter-ai"
+                        class="news-filter px-4 py-2 rounded-full text-sm font-bold border border-white/10 text-gray-400 transition-all hover:border-isc-purple hover:text-isc-purple">AI
+                        Safety</button>
+                    <button onclick="filterNews('cloud')" id="filter-cloud"
+                        class="news-filter px-4 py-2 rounded-full text-sm font-bold border border-white/10 text-gray-400 transition-all hover:border-isc-primary hover:text-white">Cloud</button>
+                </div>
+            </div>
+
+            <!-- News Grid -->
+            <div id="news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[300px]">
+                <!-- Loaders -->
+                <div class="glass-card p-6 rounded-xl animate-pulse">
+                    <div class="h-4 bg-white/10 rounded w-3/4 mb-4"></div>
+                    <div class="h-4 bg-white/5 rounded w-full mb-2"></div>
+                    <div class="h-4 bg-white/5 rounded w-full mb-2"></div>
+                </div>
+                <!-- ... additional loaders omitted for brevity, logic handles replacement ... -->
+            </div>
+
+            <div class="mt-8 text-center">
+                <p class="text-xs text-gray-600">Source: The Hacker News (via RSS)</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Resource Library Section -->
+    <section id="resources" class="py-24 bg-isc-dark/50 border-y border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gsap-fade-up">
+                <div>
+                    <h2 class="text-isc-purple font-cyber text-sm tracking-widest uppercase mb-2">Archives</h2>
+                    <h3 class="text-3xl md:text-5xl font-bold text-white">Knowledge <span
+                            class="text-isc-purple text-glow-purple">Library</span></h3>
+                </div>
+                <a href="#"
+                    class="text-isc-purple hover:text-white transition-colors text-sm font-bold mt-4 md:mt-0">View Full
+                    Archive <i class="fa-solid fa-arrow-right ml-1"></i></a>
+            </div>
+
+            <!-- Resources Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Resource 1 -->
+                <div
+                    class="glass-card p-6 rounded-xl flex items-start gap-4 group hover:border-isc-purple/50 transition-all gsap-fade-up">
+                    <div
+                        class="w-12 h-12 rounded-lg bg-isc-purple/20 flex items-center justify-center text-isc-purple text-xl flex-shrink-0">
+                        <i class="fa-solid fa-file-pdf"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-white mb-1 group-hover:text-isc-purple transition-colors">Zero
+                            Trust Architecture</h4>
+                        <p class="text-xs text-isc-neon mb-2">Sep 2025 • Sarah Connors (CISO)</p>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-2">Deep dive into implementing ZT principles in
+                            legacy manufacturing environments.</p>
+                        <div class="flex gap-3">
+                            <a href="#"
+                                class="text-xs font-bold text-white bg-white/10 px-3 py-1.5 rounded hover:bg-isc-purple hover:text-white transition-colors"><i
+                                    class="fa-solid fa-download mr-1"></i> Slides</a>
+                            <a href="#"
+                                class="text-xs font-bold text-gray-400 px-2 py-1.5 hover:text-white transition-colors"><i
+                                    class="fa-brands fa-linkedin text-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resource 2 -->
+                <div class="glass-card p-6 rounded-xl flex items-start gap-4 group hover:border-isc-purple/50 transition-all gsap-fade-up"
+                    style="transition-delay: 0.1s;">
+                    <div
+                        class="w-12 h-12 rounded-lg bg-isc-purple/20 flex items-center justify-center text-isc-purple text-xl flex-shrink-0">
+                        <i class="fa-solid fa-video"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-white mb-1 group-hover:text-isc-purple transition-colors">AI
+                            Threat Vector Analysis</h4>
+                        <p class="text-xs text-isc-neon mb-2">Aug 2025 • Dr. A. Turing</p>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-2">Analyzing the rise of LLM-driven phishing
+                            campaigns and defense strategies.</p>
+                        <div class="flex gap-3">
+                            <a href="#"
+                                class="text-xs font-bold text-white bg-white/10 px-3 py-1.5 rounded hover:bg-isc-purple hover:text-white transition-colors"><i
+                                    class="fa-solid fa-play mr-1"></i> Watch</a>
+                            <a href="#"
+                                class="text-xs font-bold text-gray-400 px-2 py-1.5 hover:text-white transition-colors"><i
+                                    class="fa-brands fa-linkedin text-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resource 3 -->
+                <div class="glass-card p-6 rounded-xl flex items-start gap-4 group hover:border-isc-purple/50 transition-all gsap-fade-up"
+                    style="transition-delay: 0.2s;">
+                    <div
+                        class="w-12 h-12 rounded-lg bg-isc-purple/20 flex items-center justify-center text-isc-purple text-xl flex-shrink-0">
+                        <i class="fa-solid fa-file-powerpoint"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-white mb-1 group-hover:text-isc-purple transition-colors">
+                            Incident Response 101</h4>
+                        <p class="text-xs text-isc-neon mb-2">Jul 2025 • Mike Ross</p>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-2">Tabletop exercise scenarios and playbook
+                            templates for small businesses.</p>
+                        <div class="flex gap-3">
+                            <a href="#"
+                                class="text-xs font-bold text-white bg-white/10 px-3 py-1.5 rounded hover:bg-isc-purple hover:text-white transition-colors"><i
+                                    class="fa-solid fa-download mr-1"></i> Slides</a>
+                            <a href="#"
+                                class="text-xs font-bold text-gray-400 px-2 py-1.5 hover:text-white transition-colors"><i
+                                    class="fa-brands fa-linkedin text-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Donations and Sponsorship Section -->
+    <!-- NEW: Corporate Sponsorship Section -->
+    <section id="sponsorship" class="py-24 relative overflow-hidden bg-isc-dark/50 border-y border-isc-primary/20">
+        <!-- Background element -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-isc-primary/5 to-transparent pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-t from-isc-cyan/5 to-transparent pointer-events-none blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 gsap-fade-up">
+                <h2 class="text-isc-cyan font-cyber text-sm tracking-widest uppercase mb-2">Support Your Chapter</h2>
+                <h3 class="text-3xl md:text-5xl font-bold text-white mb-4">Corporate <span class="text-isc-accent">Sponsorships</span></h3>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto text-lg leading-relaxed">
+                    Yes, as a registered 501(c)(3) non-profit organization... <strong class="text-isc-neon">we need your money! :)</strong><br>
+                    Your generous support goes a long way in helping us achieve our goals, foster a strong cybersecurity environment, and keep this community completely free for our members.
+                </p>
+            </div>
+
+            <!-- Single Sponsor Tier Logic -->
+            <div class="max-w-4xl mx-auto glass-primary p-10 md:p-14 rounded-3xl relative overflow-hidden shadow-[0_0_40px_rgba(0,104,82,0.2)] mb-16">
+                <!-- Decorative Glows -->
+                <div class="absolute top-0 right-0 w-48 h-48 bg-isc-cyan/10 rounded-bl-[150px] -z-10 transition-colors"></div>
+                <div class="absolute bottom-0 left-0 w-32 h-32 bg-isc-primary/20 rounded-tr-[100px] -z-10 blur-xl"></div>
+                
+                <div class="flex flex-col md:flex-row gap-12 items-center">
+                    <div class="flex-1">
+                        <div class="w-16 h-16 rounded-2xl bg-isc-primary border border-isc-cyan/40 flex items-center justify-center text-isc-cyan mb-6 shadow-[0_0_15px_rgba(0,240,255,0.2)]">
+                            <i class="fa-solid fa-handshake text-2xl"></i>
+                        </div>
+                        <h4 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">Meeting Sponsorship</h4>
+                        <div class="text-isc-accent text-2xl font-bold mb-6">$500 <span class="text-sm font-normal text-gray-600 dark:text-gray-400">/ per meeting</span></div>
+                        
+                        <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed bg-white/50 dark:bg-[#020617]/40 p-5 rounded-xl border border-gray-200 dark:border-white/5 shadow-sm">
+                            We accept cash sponsorships to cover the food and beverage costs for our monthly gatherings. In return, you will receive <strong class="text-gray-900 dark:text-white">prominent logo placement</strong> on our website along with <strong class="text-gray-900 dark:text-white">a direct shoutout and exposure</strong> to all members at our scheduled event!
+                        </p>
+                        
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-4 text-gray-300">
+                                <div class="mt-1 bg-isc-cyan/20 p-1 rounded-full"><i class="fa-solid fa-clock text-xs text-isc-cyan w-3 text-center"></i></div>
+                                <div>
+                                    <strong class="text-white block mb-1">Extended Visibility Window</strong>
+                                    Sponsors get a plug on our page for the duration of the cycle (e.g., if you sponsor the April meeting, your logo stays up until the end of June).
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4 text-gray-300">
+                                <div class="mt-1 bg-isc-neon/20 p-1 rounded-full"><i class="fa-solid fa-rotate text-xs text-isc-neon w-3 text-center"></i></div>
+                                <div>
+                                    <strong class="text-white block mb-1">Annual & Recurring</strong>
+                                    Looking for massive brand exposure? We gladly welcome annual or recurring monthly sponsorships!
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <a href="mailto:info@isc2chapter-cleveland.us" class="inline-block px-8 py-4 bg-isc-primary text-white font-bold rounded-lg transition-all hover:bg-isc-cyan hover:text-black hover:shadow-[0_0_20px_rgba(0,240,255,0.5)]">
+                            Sponsor Next Month's Meeting
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Current Sponsors Grid -->
+            <div class="text-center mb-10">
+                <h4 class="text-xl font-bold text-white mb-8 border-b border-white/10 pb-4 inline-block px-8">Our Generous Sponsors</h4>
+                
+                <div class="flex flex-wrap justify-center gap-8 items-center">
+                    <!-- TrustedSec Logo -->
+                    <a href="https://trustedsec.com/" target="_blank" rel="noopener noreferrer" class="group relative w-64 h-32 block bg-white border border-white/10 rounded-xl flex items-center justify-center p-6 shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-300">
+                        <img src="./images/trustedsec-logo.png" alt="TrustedSec Sponsor" class="max-w-full max-h-full object-contain">
+                        <!-- Tooltip indicator -->
+                        <div class="absolute -top-3 -right-3 w-6 h-6 bg-isc-cyan rounded-full flex items-center justify-center text-black text-xs font-bold shadow-lg opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </a>
+
+                    <!-- Fortinet Logo -->
+                    <a href="https://www.fortinet.com/" target="_blank" rel="noopener noreferrer" class="group relative w-64 h-32 block bg-white border border-white/10 rounded-xl flex items-center justify-center p-6 shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-300">
+                        <img src="./images/fortinet-logo.png" alt="Fortinet Sponsor" class="max-w-full max-h-full object-contain">
+                        <!-- Tooltip indicator -->
+                        <div class="absolute -top-3 -right-3 w-6 h-6 bg-isc-neon rounded-full flex items-center justify-center text-black text-xs font-bold shadow-lg opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Membership Section -->
+    <section id="membership" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 gsap-fade-up">
+                <h2 class="text-isc-neon font-cyber text-sm tracking-widest uppercase mb-2">Join The Community</h2>
+                <h3 class="text-3xl md:text-5xl font-bold text-white mb-4">Membership <span class="text-isc-accent">Information</span></h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-2xl flex flex-col justify-center text-center hover:bg-white/5 transition-colors gsap-bento">
+                    <i class="fa-solid fa-user-plus text-5xl text-isc-accent mb-6"></i>
+                    <h4 class="text-xl font-bold text-white mb-3">How do I join?</h4>
+                    <p class="text-gray-300 text-sm leading-relaxed">It's simple: <strong>Just show up!</strong> Join us at our next event. If you attend, you're part of the local community.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl flex flex-col justify-center text-center hover:bg-white/5 transition-colors gsap-bento">
+                    <i class="fa-solid fa-certificate text-5xl text-isc-cyan mb-6"></i>
+                    <h4 class="text-xl font-bold text-white mb-3">Do I need a certification?</h4>
+                    <p class="text-gray-300 text-sm leading-relaxed">Not at all. Whether you're a seasoned CISSP, a student, or just transitioning into cybersecurity, everyone is welcome!</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl flex flex-col justify-center text-center hover:bg-white/5 transition-colors gsap-bento">
+                    <i class="fa-solid fa-money-bill-1-wave text-5xl text-isc-neon mb-6"></i>
+                    <h4 class="text-xl font-bold text-white mb-3">Are there any fees?</h4>
+                    <p class="text-gray-300 text-sm leading-relaxed">No! There are absolutely zero chapter dues. We want to continue to be 100% free for the community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: FAQ Section -->
+    <section id="faq" class="py-24 relative overflow-hidden bg-isc-dark/50 border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 gsap-fade-up">
+                <h2 class="text-isc-cyan font-cyber text-sm tracking-widest uppercase mb-2">Got Questions?</h2>
+                <h3 class="text-3xl md:text-5xl font-bold text-white mb-4">Frequently Asked <span class="text-isc-accent">Questions</span></h3>
+            </div>
+
+            <div class="space-y-4">
+                
+                <!-- FAQ Item 1 (CPEs) -->
+                <details class="group bg-[#020617]/40 border border-white/10 rounded-xl overflow-hidden cursor-pointer w-full transition-all duration-300 hover:border-isc-primary" open>
+                    <summary class="flex items-center justify-between p-6 font-bold text-lg text-gray-900 dark:text-white list-none group-open:text-isc-primary dark:group-open:text-isc-cyan">
+                        Do we earn CPEs for attending chapter meetings?
+                        <span class="transition group-open:rotate-180">
+                            <i class="fa-solid fa-chevron-down text-isc-cyan"></i>
+                        </span>
+                    </summary>
+                    <div class="p-6 pt-0 text-gray-700 dark:text-gray-400 text-sm leading-relaxed border-t border-gray-200 dark:border-white/5 mt-2">
+                        Yes! Just make sure to sign in when you arrive at an event. We can provide you with a certificate of attendance that will work for submitting CPEs to other certifying bodies.
+                    </div>
+                </details>
+
+                <!-- FAQ Item 2 (Corporate Sponsor) -->
+                <details class="group bg-[#020617]/40 border border-white/10 rounded-xl overflow-hidden cursor-pointer w-full transition-all duration-300 hover:border-isc-primary">
+                    <summary class="flex items-center justify-between p-6 font-bold text-lg text-gray-900 dark:text-white list-none group-open:text-isc-primary dark:group-open:text-isc-cyan">
+                        How can my company become a Corporate Sponsor?
+                        <span class="transition group-open:rotate-180">
+                            <i class="fa-solid fa-chevron-down text-isc-cyan"></i>
+                        </span>
+                    </summary>
+                    <div class="p-6 pt-0 text-gray-700 dark:text-gray-400 text-sm leading-relaxed border-t border-gray-200 dark:border-white/5 mt-2">
+                        Thank you for your support and generosity. Your support would go a long way in helping us achieve our goals and continue to foster a strong and secure cyber environment. We accept cash sponsorship, where in return, you will receive logo placement on our website, along with exposure to all members at our regularly scheduled events. Contact <a href="mailto:info@isc2chapter-cleveland.us" class="text-isc-accent hover:underline">info@isc2chapter-cleveland.us</a> to get involved.
+                    </div>
+                </details>
+
+                <!-- FAQ Item 3 (Donations) -->
+                <details class="group bg-[#020617]/40 border border-white/10 rounded-xl overflow-hidden cursor-pointer w-full transition-all duration-300 hover:border-isc-primary">
+                    <summary class="flex items-center justify-between p-6 font-bold text-lg text-gray-900 dark:text-white list-none group-open:text-isc-primary dark:group-open:text-isc-cyan">
+                        Are you accepting donations?
+                        <span class="transition group-open:rotate-180">
+                            <i class="fa-solid fa-chevron-down text-isc-cyan"></i>
+                        </span>
+                    </summary>
+                    <div class="p-6 pt-0 text-gray-700 dark:text-gray-400 text-sm leading-relaxed border-t border-gray-200 dark:border-white/5 mt-2">
+                        Yes! We're a 501(c)(3) organization that will gladly take your money. We appreciate any financial contributions to help keep our events completely free for the local cybersecurity community.
+                    </div>
+                </details>
+
+                <!-- FAQ Item 4 (Volunteers / Officers) -->
+                <details class="group bg-[#020617]/40 border border-white/10 rounded-xl overflow-hidden cursor-pointer w-full transition-all duration-300 hover:border-isc-primary">
+                    <summary class="flex items-center justify-between p-6 font-bold text-lg text-gray-900 dark:text-white list-none group-open:text-isc-primary dark:group-open:text-isc-cyan">
+                        Who should I speak with about volunteering, talking, or presenting?
+                        <span class="transition group-open:rotate-180">
+                            <i class="fa-solid fa-chevron-down text-isc-cyan"></i>
+                        </span>
+                    </summary>
+                    <div class="p-6 pt-0 text-gray-700 dark:text-gray-400 text-sm leading-relaxed border-t border-gray-200 dark:border-white/5 mt-2">
+                        We are always looking for help and new voices! Please refer to the <a href="#leadership" class="text-isc-accent hover:underline">Leadership section</a> on this website for the appropriate officer to contact, or refer to our <a href="#membership" class="text-isc-neon hover:underline">Membership</a> page to learn more about ways to join in!
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </section>
+    <!-- Footer / Contact -->
+    <footer id="contact" class="bg-black pt-16 pb-10 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-8">
+                <div class="max-w-md">
+                    <div class="flex items-center gap-3 mb-6">
+                        <img src="./images/updated-transparent.png" alt="ISC2 Cleveland Logo" class="h-20 sm:h-24 w-auto object-contain">
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Building a secure digital future for Northeastern Ohio through education, advocacy, and
+                        community.
+                    </p>
+                    <p class="text-gray-500 text-xs italic">
+                        ISC2 Cleveland Chapter is a registered 501(c)(3) non-profit organization.
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-start md:items-end gap-4">
+                    <a href="mailto:info@isc2chapter-cleveland.us" class="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-envelope w-5"></i> info@isc2chapter-cleveland.us
+                    </a>
+                    <div class="flex gap-4 mt-2">
+                        <a href="https://www.linkedin.com/company/isc2-cleveland-chapter" target="_blank"
+                            class="w-10 h-10 rounded-full bg-white/5 hover:bg-[#0077b5] hover:text-white flex items-center justify-center text-gray-400 transition-all duration-300" title="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in text-lg"></i>
+                        </a>
+                        <a href="https://www.eventbrite.com/o/isc2-cleveland-chapter-30799753066" target="_blank"
+                            class="w-10 h-10 rounded-full bg-white/5 hover:bg-[#F05537] hover:text-white flex items-center justify-center text-gray-400 transition-all duration-300" title="EventBrite">
+                            <i class="fa-solid fa-ticket text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-600 gap-4 text-center md:text-left">
+                <p>&copy; 2026 ISC2 Cleveland Chapter. All rights reserved.</p>
+                <p>Design by Weblytics</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // ----------------------------------------------------
+        // Gemini API Implementation
+        // ----------------------------------------------------
+
+        const apiKey = "AIzaSyB2-hYEzVSwwYz3JQvU3BuJL1NJmxc2ek8"; // Set at runtime
+
+        async function callGeminiAPI(systemPrompt, userPrompt) {
+            if (!userPrompt.trim()) return "Please enter some text.";
+
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userPrompt }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] }
+            };
+
+            // Backoff logic: delays in ms
+            const delays = [1000, 2000, 4000, 8000, 16000];
+
+            for (let i = 0; i <= delays.length; i++) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        // If error 429 (Too Many Requests) or 5xx, retry
+                        if (response.status === 429 || response.status >= 500) {
+                            if (i < delays.length) {
+                                await new Promise(resolve => setTimeout(resolve, delays[i]));
+                                continue;
+                            }
+                        }
+                        throw new Error(`API Error: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
+
+                } catch (error) {
+                    if (i === delays.length) return "Sorry, the AI service is currently unavailable. Please try again later.";
+                }
+            }
+        }
+
+        // Feature 1: Threat Briefing
+        async function generateBriefing() {
+            const input = document.getElementById('briefing-input').value;
+            const resultDiv = document.getElementById('briefing-result');
+            const btn = document.getElementById('briefing-btn');
+
+            if (!input) return;
+
+            // UI Loading State
+            btn.innerHTML = '<span class="loader"></span> Generating...';
+            btn.disabled = true;
+            resultDiv.classList.remove('hidden');
+            resultDiv.innerHTML = '<div class="flex items-center gap-2"><div class="loader"></div> Analyzing global threat vectors...</div>';
+
+            const systemPrompt = "You are a CISO advisor. Provide a high-level, 3-bullet point executive summary on the cybersecurity topic provided by the user. Focus on risks and mitigation strategies. Be professional, concise, and use formatting like **Bold** for emphasis.";
+
+            const response = await callGeminiAPI(systemPrompt, input);
+
+            // Render Result
+            resultDiv.innerHTML = marked.parse(response);
+
+            // Reset UI
+            btn.innerHTML = '<span>✨ Generate Briefing</span>';
+            btn.disabled = false;
+        }
+
+        // Feature 2: Phishing Analyzer
+        async function analyzePhish() {
+            const input = document.getElementById('phish-input').value;
+            const resultDiv = document.getElementById('phish-result');
+            const btn = document.getElementById('phish-btn');
+
+            if (!input) return;
+
+            // UI Loading State
+            btn.innerHTML = '<span class="loader"></span> Analyzing...';
+            btn.disabled = true;
+            resultDiv.classList.remove('hidden');
+            resultDiv.innerHTML = '<div class="flex items-center gap-2"><div class="loader"></div> Scanning for social engineering indicators...</div>';
+
+            const systemPrompt = "You are a security analyst training a user. Analyze the provided email text for phishing indicators (urgency, inconsistencies, suspicious requests, bad grammar). Provide a 'Risk Level' (Low, Medium, High) and 2-3 short reasons why. Keep it educational and concise.";
+
+            const response = await callGeminiAPI(systemPrompt, input);
+
+            // Render Result
+            resultDiv.innerHTML = marked.parse(response);
+
+            // Reset UI
+            btn.innerHTML = '<span>✨ Analyze Text</span>';
+            btn.disabled = false;
+        }
+
+
+        // Feature 3: News Aggregator
+        let allNews = [];
+
+        async function fetchNews() {
+            const feedUrl = 'https://feeds.feedburner.com/TheHackersNews';
+            // Using rss2json service to bridge RSS XML to JSON for client-side consumption
+            const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
+            const grid = document.getElementById('news-grid');
+
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                if (data.status === 'ok') {
+                    allNews = data.items;
+                    renderNews(allNews); // Initial render
+                } else {
+                    grid.innerHTML = '<p class="text-red-400 text-center col-span-3">Failed to load news feed.</p>';
+                }
+            } catch (error) {
+                console.error('News fetch error:', error);
+                grid.innerHTML = '<p class="text-red-400 text-center col-span-3">Unavailable (Network Error).</p>';
+            }
+        }
+
+        function renderNews(items) {
+            const grid = document.getElementById('news-grid');
+            grid.innerHTML = '';
+
+            if (items.length === 0) {
+                grid.innerHTML = '<p class="text-gray-500 text-center col-span-3 py-10">No articles found matching this filter.</p>';
+                return;
+            }
+
+            // Limit to 6 items
+            items.slice(0, 6).forEach(item => {
+                const date = new Date(item.pubDate).toLocaleDateString("en-US", { month: 'short', day: 'numeric' });
+                const card = document.createElement('div');
+                card.className = 'glass-card p-6 rounded-xl flex flex-col h-full group hover:bg-white/5 transition-all';
+
+                // Extract a simplified description (remove HTML tags)
+                const tempDiv = document.createElement("div");
+                tempDiv.innerHTML = item.description;
+                const textDesc = tempDiv.textContent || tempDiv.innerText || "";
+                const shortDesc = textDesc.length > 100 ? textDesc.substring(0, 100) + "..." : textDesc;
+
+                card.innerHTML = `
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs font-bold text-isc-neon bg-isc-neon/10 px-2 py-1 rounded">${date}</span>
+                        <a href="${item.link}" target="_blank" class="text-gray-400 hover:text-white"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-3 group-hover:text-isc-accent transition-colors leading-tight">
+                        <a href="${item.link}" target="_blank">${item.title}</a>
+                    </h4>
+                    <p class="text-gray-400 text-sm mb-4 flex-grow">${shortDesc}</p>
+                    <div class="mt-auto pt-4 border-t border-white/5 flex items-center gap-2 text-xs text-gray-500">
+                        <i class="fa-regular fa-bookmark"></i> ${item.categories[0] || 'Cybersecurity'}
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            // Re-trigger scroll trigger if needed
+            ScrollTrigger.refresh();
+        }
+
+        function filterNews(category) {
+            // UI State
+            document.querySelectorAll('.news-filter').forEach(btn => {
+                btn.classList.remove('active', 'border-isc-neon', 'bg-isc-neon/10', 'text-isc-neon');
+                btn.classList.add('border-white/10', 'text-gray-400');
+            });
+
+            const activeBtn = document.getElementById(`filter-${category}`);
+            activeBtn.classList.remove('border-white/10', 'text-gray-400');
+            activeBtn.classList.add('active', 'border-isc-neon', 'bg-isc-neon/10', 'text-isc-neon');
+
+            // Logic
+            if (category === 'all') {
+                renderNews(allNews);
+            } else {
+                const filtered = allNews.filter(item => {
+                    const text = (item.title + ' ' + item.description).toLowerCase();
+                    if (category === 'ai') return text.includes('ai') || text.includes('gpt') || text.includes('intelligence');
+                    return text.includes(category);
+                });
+                renderNews(filtered);
+            }
+        }
+
+        // Init News
+        fetchNews();
+
+        // Feature 4: Job Board (Simulated)
+        function scanForJobs() {
+            const zipInput = document.getElementById('job-zip');
+            const zip = zipInput.value.trim();
+            const resultsDiv = document.getElementById('job-results');
+            const loader = document.getElementById('job-loader');
+
+            if (!zip) {
+                alert('Please enter a target sector (Zip Code).');
+                return;
+            }
+
+            // UI Loading State
+            resultsDiv.classList.add('hidden');
+            loader.classList.remove('hidden');
+
+            // Simulate Network Delay
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                resultsDiv.classList.remove('hidden');
+
+                // MOCK DATA - In a real app, this would fetch from an API like Indeed or LinkedIn
+                const jobs = [
+                    { title: "SOC Analyst Tier II", company: "CyberDefense Corp", type: "Full-time", location: `Cleveland, OH (${zip})`, salary: "$85k - $110k" },
+                    { title: "Information Security Manager", company: "Global FinTech", type: "Hybrid", location: `Remote / Cleveland`, salary: "$130k - $160k" },
+                    { title: "Network Security Engineer", company: "HealthSys", type: "On-site", location: `Cleveland, OH (${zip})`, salary: "$95k - $125k" },
+                    { title: "Governance, Risk & Compliance Lead", company: "Validus Solutions", type: "Remote", location: "Remote", salary: "$115k - $145k" }
+                ];
+
+                resultsDiv.innerHTML = jobs.map((job, index) => `
+                    <div class="glass-card p-6 rounded-xl flex justify-between items-start group hover:bg-white/5 transition-all animate-fade-in" style="animation-delay: ${index * 100}ms">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-xs font-bold text-isc-primary bg-isc-primary/10 px-2 py-1 rounded border border-isc-primary/20">${job.type}</span>
+                                <span class="text-xs text-gray-500"><i class="fa-solid fa-location-dot"></i> ${job.location}</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-white group-hover:text-isc-accent transition-colors">${job.title}</h4>
+                            <p class="text-gray-400 text-sm mb-3">${job.company}</p>
+                            <p class="text-green-400 font-mono text-xs">${job.salary}</p>
+                        </div>
+                        <button class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-isc-neon hover:text-black transition-all">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                `).join('');
+
+                // Smooth scroll to results
+                resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            }, 1500);
+        }
+
+        // ----------------------------------------------------
+        // Existing Website Scripts
+        // ----------------------------------------------------
+
+
+
+        // 1. Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // 2. Navbar Glass Effect on Scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-isc-dark/90', 'shadow-lg');
+            } else {
+                navbar.classList.remove('bg-isc-dark/90', 'shadow-lg');
+            }
+        });
+
+        // 3. GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Animation
+        gsap.to('.gsap-hero', {
+            opacity: 1,
+            y: 0,
+            duration: 1.5,
+            ease: "power3.out",
+            delay: 0.2
+        });
+
+        // Section Headers
+        gsap.utils.toArray('.gsap-fade-up').forEach(element => {
+            gsap.from(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 0,
+                y: 50,
+                duration: 0.8
+            });
+        });
+
+        // About Grid
+        gsap.from('.gsap-fade-right', {
+            scrollTrigger: { trigger: '#about', start: "top 75%" },
+            x: -50, opacity: 0, duration: 1
+        });
+
+        gsap.from('.gsap-fade-left', {
+            scrollTrigger: { trigger: '#about', start: "top 75%" },
+            x: 50, opacity: 0, duration: 1, delay: 0.2
+        });
+
+        // Bento Grid Stagger
+        gsap.from('.gsap-bento', {
+            scrollTrigger: { trigger: '#membership', start: "top 75%" },
+            y: 30, opacity: 0, duration: 0.8, stagger: 0.1
+        });
+
+        // 4. Canvas Particle Network Animation
+        const canvas = document.getElementById('networkCanvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+
+        // Resize
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Particle Class
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2 + 1;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = '#006852';
+                ctx.fill();
+            }
+        }
+
+        // Init Particles
+        for (let i = 0; i < 60; i++) {
+            particles.push(new Particle());
+        }
+
+        // Animation Loop
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+                p.update();
+                p.draw();
+
+                // Draw Connections
+                for (let j = i + 1; j < particles.length; j++) {
+                    let p2 = particles[j];
+                    let distance = Math.sqrt((p.x - p2.x) ** 2 + (p.y - p2.y) ** 2);
+                    if (distance < 150) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(149, 214, 0, ${1 - distance / 150})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+    </script>
+</body>
+
+</html>
