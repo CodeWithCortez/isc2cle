@@ -1043,7 +1043,7 @@
         // Gemini API Implementation
         // ----------------------------------------------------
 
-        const apiKey = "AIzaSyB2-hYEzVSwwYz3JQvU3BuJL1NJmxc2ek8"; // Set at runtime
+        const apiKey = "%VITE_GEMINI_API_KEY%"; // Set via .env file
 
         async function callGeminiAPI(systemPrompt, userPrompt) {
             if (!userPrompt.trim()) return "Please enter some text.";
