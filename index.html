@@ -974,21 +974,24 @@
                     });
 
                     if (!response.ok) {
-                        // If error 429 (Too Many Requests) or 5xx, retry
                         if (response.status === 429 || response.status >= 500) {
                             if (i < delays.length) {
                                 await new Promise(resolve => setTimeout(resolve, delays[i]));
                                 continue;
                             }
                         }
-                        throw new Error(`API Error: ${response.status}`);
+                        const errData = await response.json().catch(() => ({}));
+                        throw new Error(`API Error ${response.status}: ${errData?.error?.message || "Invalid Request"}`);
                     }
 
                     const data = await response.json();
                     return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
 
                 } catch (error) {
-                    if (i === delays.length) return "Sorry, the AI service is currently unavailable. Please try again later.";
+                    console.error("Gemini API Failure:", error);
+                    if (i === delays.length || error.message.includes("400") || error.message.includes("403")) {
+                        return `❌ **API Connection Failed:** ${error.message}\n\n*(Debug ID: ${apiKey.substring(0, 5)}...)*`;
+                    }
                 }
             }
         }
