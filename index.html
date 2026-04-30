@@ -188,7 +188,7 @@
 <body class="antialiased">
 
     <!-- Canvas Background for Hero -->
-    <canvas id="networkCanvas" class="fixed top-0 left-0 w-full h-full -z-10 opacity-40 pointer-events-none"></canvas>
+    <canvas id="networkCanvas" class="fixed top-0 left-0 w-full h-full -z-10 opacity-80 pointer-events-none"></canvas>
 
     <!-- Gradient Overlay -->
     <div
@@ -1307,7 +1307,7 @@
                 this.y = Math.random() * height;
                 this.vx = (Math.random() - 0.5) * 0.5;
                 this.vy = (Math.random() - 0.5) * 0.5;
-                this.size = Math.random() * 2 + 1;
+                this.size = Math.random() * 2.5 + 1.5;
             }
             update() {
                 this.x += this.vx;
@@ -1324,7 +1324,7 @@
         }
 
         // Init Particles
-        for (let i = 0; i < 60; i++) {
+        for (let i = 0; i < 100; i++) {
             particles.push(new Particle());
         }
 
@@ -1344,7 +1344,7 @@
                     if (distance < 150) {
                         ctx.beginPath();
                         ctx.strokeStyle = `rgba(149, 214, 0, ${1 - distance / 150})`;
-                        ctx.lineWidth = 0.5;
+                        ctx.lineWidth = 1.0;
                         ctx.moveTo(p.x, p.y);
                         ctx.lineTo(p2.x, p2.y);
                         ctx.stroke();
