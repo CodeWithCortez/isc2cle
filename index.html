@@ -1099,25 +1099,39 @@
                 },
                 opacity: 0,
                 y: 50,
-                duration: 0.8
+                duration: 0.8,
+                clearProps: "all",
+                onComplete: () => {
+                    if (element.classList.contains('glass-card')) {
+                        element.classList.add('hover-ready');
+                    }
+                }
             });
         });
 
         // About Grid
         gsap.from('.gsap-fade-right', {
             scrollTrigger: { trigger: '#about', start: "top 75%" },
-            x: -50, opacity: 0, duration: 1
+            x: -50, opacity: 0, duration: 1,
+            clearProps: "all"
         });
 
         gsap.from('.gsap-fade-left', {
             scrollTrigger: { trigger: '#about', start: "top 75%" },
-            x: 50, opacity: 0, duration: 1, delay: 0.2
+            x: 50, opacity: 0, duration: 1, delay: 0.2,
+            clearProps: "all"
         });
 
         // Bento Grid Stagger
         gsap.from('.gsap-bento', {
             scrollTrigger: { trigger: '#membership', start: "top 75%" },
-            y: 30, opacity: 0, duration: 0.8, stagger: 0.1
+            y: 30, opacity: 0, duration: 0.8, stagger: 0.1,
+            clearProps: "all",
+            onComplete: () => {
+                document.querySelectorAll('.gsap-bento').forEach(el => {
+                    el.classList.add('hover-ready');
+                });
+            }
         });
 
         // 4. Canvas Particle Network Animation
