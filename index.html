@@ -364,8 +364,15 @@
                             <span>✨ Generate Briefing</span>
                         </button>
 
-                        <div id="briefing-result"
-                            class="hidden mt-4 p-4 bg-white/5 rounded-lg border border-white/5 text-gray-300 text-sm leading-relaxed min-h-[100px]">
+                        <div class="relative group">
+                            <div id="briefing-result"
+                                class="hidden mt-4 p-4 bg-white/5 rounded-lg border border-white/5 text-gray-300 text-sm leading-relaxed min-h-[100px] pr-12">
+                            </div>
+                            <button onclick="copyBriefing()" id="briefing-copy-btn"
+                                class="hidden absolute top-3 right-3 p-2 text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded border border-white/10 transition-all text-xs flex items-center gap-1"
+                                title="Copy to clipboard">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -860,6 +867,7 @@
             const input = document.getElementById('briefing-input').value;
             const resultDiv = document.getElementById('briefing-result');
             const btn = document.getElementById('briefing-btn');
+            const copyBtn = document.getElementById('briefing-copy-btn');
 
             if (!input) return;
 
@@ -868,6 +876,7 @@
             btn.disabled = true;
             resultDiv.classList.remove('hidden');
             resultDiv.innerHTML = '<div class="flex items-center gap-2"><div class="loader"></div> Analyzing global threat vectors...</div>';
+            copyBtn.classList.add('hidden');
 
             const systemPrompt = "You are a CISO advisor. Provide a high-level, 3-bullet point executive summary on the cybersecurity topic provided by the user. Focus on risks and mitigation strategies. Be professional, concise, and use formatting like **Bold** for emphasis.";
 
@@ -875,10 +884,33 @@
 
             // Render Result
             resultDiv.innerHTML = marked.parse(response);
+            copyBtn.classList.remove('hidden');
 
             // Reset UI
             btn.innerHTML = '<span>✨ Generate Briefing</span>';
             btn.disabled = false;
+        }
+
+        function copyBriefing() {
+            const resultDiv = document.getElementById('briefing-result');
+            const textToCopy = resultDiv.textContent || resultDiv.innerText || "";
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const copyBtn = document.getElementById('briefing-copy-btn');
+                const originalHtml = copyBtn.innerHTML;
+                
+                copyBtn.innerHTML = '<i class="fa-solid fa-check text-green-400"></i> Copied!';
+                copyBtn.classList.remove('text-gray-400');
+                copyBtn.classList.add('text-green-400', 'border-green-500/30');
+                
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalHtml;
+                    copyBtn.classList.add('text-gray-400');
+                    copyBtn.classList.remove('text-green-400', 'border-green-500/30');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
         }
 
         // Feature 2: Phishing Analyzer
