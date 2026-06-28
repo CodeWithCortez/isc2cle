@@ -1032,10 +1032,10 @@
 
         // Feature 3.5: Sanity Events Integration
         async function fetchSanityEvents() {
-            const projectId = import.meta.env.VITE_SANITY_PROJECT_ID;
-            const dataset = import.meta.env.VITE_SANITY_DATASET || 'production';
+            const projectId = "%VITE_SANITY_PROJECT_ID%";
+            const dataset = "%VITE_SANITY_DATASET%" || 'production';
 
-            if (!projectId) {
+            if (!projectId || projectId.startsWith('%') || projectId === 'undefined' || projectId === 'null') {
                 console.log('Sanity Project ID not configured. Using static fallback events.');
                 return;
             }
