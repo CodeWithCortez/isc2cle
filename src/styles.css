@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --tw-color-white: 15 23 42;
+    --tw-color-black: 255 255 255;
+    --tw-color-gray-300: 100 116 139;
+    --tw-color-gray-400: 71 85 105;
+    --tw-color-gray-500: 51 65 85;
+    --tw-color-gray-600: 30 41 59;
+
+    --isc-dark: 248 250 252;
+    --isc-card: 255 255 255;
+    --isc-primary: 0 104 82;
+    --isc-accent: 14 165 233;
+    --isc-neon: 2 132 199;
+    --isc-cyan: 14 165 233;
+    --isc-purple: 99 102 241;
+}
+
+.dark {
+    --tw-color-white: 255 255 255;
+    --tw-color-black: 0 0 0;
+    --tw-color-gray-300: 209 213 219;
+    --tw-color-gray-400: 156 163 175;
+    --tw-color-gray-500: 107 114 128;
+    --tw-color-gray-600: 75 85 99;
+
+    --isc-dark: 2 6 23;
+    --isc-card: 15 23 42;
+    --isc-primary: 0 104 82;
+    --isc-accent: 149 214 0;
+    --isc-neon: 149 214 0;
+    --isc-cyan: 0 240 255;
+    --isc-purple: 139 92 246;
+}
+
+body {
+    background-color: rgb(var(--isc-dark));
+    color: rgb(var(--tw-color-white));
+    overflow-x: hidden;
+}
+
+/* Glassmorphism Utilities */
+.glass {
+    background: rgb(var(--isc-card) / 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgb(var(--tw-color-white) / 0.05);
+}
+
+.glass-card {
+    background: rgb(var(--isc-card) / 0.4);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgb(var(--tw-color-white) / 0.05);
+    transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    border-color: rgb(var(--isc-cyan) / 0.3);
+    box-shadow: 0 10px 40px -10px rgb(var(--isc-accent) / 0.15), 0 0 20px rgb(var(--isc-cyan) / 0.2);
+}
+
+.glass-primary {
+    background: rgb(var(--isc-primary) / 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgb(var(--isc-primary) / 0.5);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(var(--isc-dark));
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(var(--isc-card));
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--isc-primary));
+}
+
+/* Neon Glow Text */
+.text-glow {
+    text-shadow: 0 0 20px rgba(149, 214, 0, 0.3);
+}
+
+/* AI Glow */
+.text-glow-purple {
+    text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+}
+
+/* Animated Grid Background */
+.cyber-grid {
+    background-size: 40px 40px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+}
+
+/* Loading Spinner */
+.loader {
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border-left-color: #95d600;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
