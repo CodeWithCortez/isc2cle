@@ -53,14 +53,15 @@ export default {
           placeholder: 'e.g. TrustedSec, Fairlawn, OH'                                                               
         },                                                                                                           
         {                                                                                                            
+          name: 'isVirtual',                                                                                         
+          title: 'Is Virtual Event?',                                                                                
+          type: 'boolean',                                                                                           
+          initialValue: false                                                                                        
+        },                                                                                                           
+        {                                                                                                            
           name: 'speakerName',                                                                                       
           title: 'Speaker Name',                                                                                     
           type: 'string'                                                                                             
-        },                                                                                                           
-        {                                                                                                            
-          name: 'speakerLinkedIn',                                                                                   
-          title: 'Speaker LinkedIn URL',                                                                             
-          type: 'url'                                                                                                
         },                                                                                                           
         {                                                                                                            
           name: 'topic',                                                                                             
@@ -71,12 +72,19 @@ export default {
         {                                                                                                            
           name: 'description',                                                                                       
           title: 'Description',                                                                                      
-          type: 'text'                                                                                               
+          type: 'array',                                                                                             
+          of: [{type: 'block'}]                                                                                      
         },                                                                                                           
         {                                                                                                            
           name: 'link',                                                                                              
           title: 'RSVP / Tickets Link',                                                                              
           type: 'url'                                                                                                
+        },                                                                                                           
+        {                                                                                                            
+          name: 'linkText',                                                                                          
+          title: 'RSVP Button Label',                                                                                
+          type: 'string',                                                                                            
+          placeholder: 'e.g. RSVP on Eventbrite, Get Tickets'                                                        
         },                                                                                                           
         {                                                                                                            
           name: 'image',                                                                                             
