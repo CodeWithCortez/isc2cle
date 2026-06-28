@@ -557,13 +557,14 @@
                 <div class="flex flex-wrap gap-2">
                     <button onclick="filterNews('all')" id="filter-all"
                         class="news-filter active px-4 py-2 rounded-full text-sm font-bold border border-isc-neon bg-isc-neon/10 text-isc-neon transition-all hover:bg-isc-neon hover:text-isc-dark">All</button>
-                    <button onclick="filterNews('ransomware')" id="filter-ransomware"
-                        class="news-filter px-4 py-2 rounded-full text-sm font-bold border border-white/10 text-gray-400 transition-all hover:border-isc-accent hover:text-isc-accent">Ransomware</button>
+                    <button onclick="filterNews('threat')" id="filter-threat"
+                        class="news-filter px-4 py-2 rounded-full text-sm font-bold border border-white/10 text-gray-400 transition-all hover:border-isc-accent hover:text-isc-accent">Threat Intel</button>
                     <button onclick="filterNews('ai')" id="filter-ai"
-                        class="news-filter px-4 py-2 rounded-full text-sm font-bold border border-white/10 text-gray-400 transition-all hover:border-isc-purple hover:text-isc-purple">AI
-                        Safety</button>
+                        class="news-filter px-4 py-2 rounded-full text-sm font-bold border border-white/10 text-gray-400 transition-all hover:border-isc-purple hover:text-isc-purple">AI Security</button>
+                    <button onclick="filterNews('vuln')" id="filter-vuln"
+                        class="news-filter px-4 py-2 rounded-full text-sm font-bold border border-white/10 text-gray-400 transition-all hover:border-isc-cyan hover:text-isc-cyan">Vulnerabilities</button>
                     <button onclick="filterNews('cloud')" id="filter-cloud"
-                        class="news-filter px-4 py-2 rounded-full text-sm font-bold border border-white/10 text-gray-400 transition-all hover:border-isc-primary hover:text-white">Cloud</button>
+                        class="news-filter px-4 py-2 rounded-full text-sm font-bold border border-white/10 text-gray-400 transition-all hover:border-isc-primary hover:text-isc-primary">Cloud & DevOps</button>
                 </div>
             </div>
 
@@ -965,6 +966,24 @@
             }
         }
 
+        function detectCategory(title, description) {
+            const text = (title + ' ' + description).toLowerCase();
+            // AI Security: matches ai, gpt, intelligence, agent, assistant, chatbot, llm, bot, copilot, amazon q, model context
+            if (/\bai\b/.test(text) || text.includes('gpt') || text.includes('intelligence') || text.includes('agent') || text.includes('assistant') || text.includes('chatbot') || text.includes('llm') || text.includes('bot') || text.includes('copilot') || text.includes('mcp')) {
+                return 'AI Security';
+            }
+            // Vulnerabilities: matches exploit, vulnerability, cve, rce, flaw, bug, bypass, patch, cow, dirtyclone, privilege escalation, zero-day
+            if (text.includes('exploit') || text.includes('vulnerability') || text.includes('cve-') || text.includes('rce') || text.includes('flaw') || text.includes('bug') || text.includes('bypass') || text.includes('patch') || text.includes('cow') || text.includes('dirty') || text.includes('escalation') || text.includes('zero-day')) {
+                return 'Vulnerabilities';
+            }
+            // Cloud & DevOps: matches cloud, aws, amazon, azure, kubernetes, docker, saas, repo, git, infrastructure, web shell, database, server
+            if (text.includes('cloud') || text.includes('aws') || text.includes('amazon') || text.includes('azure') || text.includes('kubernetes') || text.includes('docker') || text.includes('saas') || text.includes('repo') || text.includes('git') || text.includes('infrastructure') || text.includes('web shell') || text.includes('database') || text.includes('server')) {
+                return 'Cloud & DevOps';
+            }
+            // Fallback: Threat Intel (threat, actor, malware, ransomware, attack, phishing, hacker, campaign, espionage, cisa, gov, spy)
+            return 'Threat Intel';
+        }
+
         function renderNews(items) {
             const grid = document.getElementById('news-grid');
             grid.innerHTML = '';
@@ -977,8 +996,33 @@
             // Limit to 6 items
             items.slice(0, 6).forEach(item => {
                 const date = new Date(item.pubDate).toLocaleDateString("en-US", { month: 'short', day: 'numeric' });
+                const category = detectCategory(item.title, item.description);
+                
+                // Color coding rules based on category
+                let badgeColor = 'text-isc-accent bg-isc-accent/10 border-isc-accent/20';
+                let hoverBorder = 'hover:border-isc-accent/30';
+                let hoverShadow = 'hover:shadow-[0_4px_30px_rgba(11,219,161,0.08)]';
+                let hoverTitle = 'group-hover:text-isc-accent';
+
+                if (category === 'AI Security') {
+                    badgeColor = 'text-isc-purple bg-isc-purple/10 border-isc-purple/20';
+                    hoverBorder = 'hover:border-isc-purple/30';
+                    hoverShadow = 'hover:shadow-[0_4px_30px_rgba(168,85,247,0.08)]';
+                    hoverTitle = 'group-hover:text-isc-purple';
+                } else if (category === 'Vulnerabilities') {
+                    badgeColor = 'text-isc-cyan bg-isc-cyan/10 border-isc-cyan/20';
+                    hoverBorder = 'hover:border-isc-cyan/30';
+                    hoverShadow = 'hover:shadow-[0_4px_30px_rgba(0,240,255,0.08)]';
+                    hoverTitle = 'group-hover:text-isc-cyan';
+                } else if (category === 'Cloud & DevOps') {
+                    badgeColor = 'text-isc-primary bg-isc-primary/10 border-isc-primary/20';
+                    hoverBorder = 'hover:border-isc-primary/30';
+                    hoverShadow = 'hover:shadow-[0_4px_30px_rgba(0,119,181,0.08)]';
+                    hoverTitle = 'group-hover:text-isc-primary';
+                }
+
                 const card = document.createElement('div');
-                card.className = 'glass-card p-6 rounded-xl flex flex-col h-full group hover:bg-white/5 transition-all';
+                card.className = `glass-card p-6 rounded-xl flex flex-col h-full group hover:bg-white/5 border border-white/5 ${hoverBorder} ${hoverShadow} transition-all duration-300`;
 
                 // Extract a simplified description (remove HTML tags)
                 const tempDiv = document.createElement("div");
@@ -991,12 +1035,13 @@
                         <span class="text-xs font-bold text-isc-neon bg-isc-neon/10 px-2 py-1 rounded">${date}</span>
                         <a href="${item.link}" target="_blank" class="text-gray-400 hover:text-white"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
-                    <h4 class="text-lg font-bold text-white mb-3 group-hover:text-isc-accent transition-colors leading-tight">
+                    <h4 class="text-lg font-bold text-white mb-3 ${hoverTitle} transition-colors leading-tight">
                         <a href="${item.link}" target="_blank">${item.title}</a>
                     </h4>
                     <p class="text-gray-400 text-sm mb-4 flex-grow">${shortDesc}</p>
-                    <div class="mt-auto pt-4 border-t border-white/5 flex items-center gap-2 text-xs text-gray-500">
-                        <i class="fa-regular fa-bookmark"></i> ${item.categories[0] || 'Cybersecurity'}
+                    <div class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between text-xs text-gray-500">
+                        <span class="flex items-center gap-1.5"><i class="fa-regular fa-bookmark"></i> Read Article</span>
+                        <span class="px-2.5 py-0.5 rounded border ${badgeColor} font-semibold text-[10px] tracking-wider uppercase">${category}</span>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -1014,17 +1059,22 @@
             });
 
             const activeBtn = document.getElementById(`filter-${category}`);
-            activeBtn.classList.remove('border-white/10', 'text-gray-400');
-            activeBtn.classList.add('active', 'border-isc-neon', 'bg-isc-neon/10', 'text-isc-neon');
+            if (activeBtn) {
+                activeBtn.classList.remove('border-white/10', 'text-gray-400');
+                activeBtn.classList.add('active', 'border-isc-neon', 'bg-isc-neon/10', 'text-isc-neon');
+            }
 
             // Logic
             if (category === 'all') {
                 renderNews(allNews);
             } else {
                 const filtered = allNews.filter(item => {
-                    const text = (item.title + ' ' + item.description).toLowerCase();
-                    if (category === 'ai') return text.includes('ai') || text.includes('gpt') || text.includes('intelligence');
-                    return text.includes(category);
+                    const detected = detectCategory(item.title, item.description);
+                    if (category === 'threat') return detected === 'Threat Intel';
+                    if (category === 'ai') return detected === 'AI Security';
+                    if (category === 'vuln') return detected === 'Vulnerabilities';
+                    if (category === 'cloud') return detected === 'Cloud & DevOps';
+                    return false;
                 });
                 renderNews(filtered);
             }
