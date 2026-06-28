@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ISC2 Cleveland Chapter | Inspiring a Safe & Secure Cyber World</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CSS (compiled via Vite + PostCSS) -->
+    <link rel="stylesheet" href="/src/styles.css">
 
     <!-- Deleted Google Fonts; using specialized brand fonts via Tailwind -->
 
@@ -21,168 +21,6 @@
     <!-- Markdown Parser for AI Responses -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        white: 'rgb(var(--tw-color-white) / <alpha-value>)',
-                        black: 'rgb(var(--tw-color-black) / <alpha-value>)',
-                        gray: {
-                            300: 'rgb(var(--tw-color-gray-300) / <alpha-value>)',
-                            400: 'rgb(var(--tw-color-gray-400) / <alpha-value>)',
-                            500: 'rgb(var(--tw-color-gray-500) / <alpha-value>)',
-                            600: 'rgb(var(--tw-color-gray-600) / <alpha-value>)',
-                        },
-                        isc: {
-                            dark: 'rgb(var(--isc-dark) / <alpha-value>)',
-                            card: 'rgb(var(--isc-card) / <alpha-value>)',
-                            primary: 'rgb(var(--isc-primary) / <alpha-value>)',
-                            accent: 'rgb(var(--isc-accent) / <alpha-value>)',
-                            neon: 'rgb(var(--isc-neon) / <alpha-value>)',
-                            cyan: 'rgb(var(--isc-cyan) / <alpha-value>)',
-                            purple: 'rgb(var(--isc-purple) / <alpha-value>)',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Avenir', '"Avenir Next"', 'Nunito', 'sans-serif'],
-                        cyber: ['"Gill Sans"', '"Gill Sans MT"', 'Calibri', 'sans-serif'],
-                    },
-                    backgroundImage: {
-                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        :root {
-            --tw-color-white: 15 23 42;
-            --tw-color-black: 255 255 255;
-            --tw-color-gray-300: 100 116 139;
-            --tw-color-gray-400: 71 85 105;
-            --tw-color-gray-500: 51 65 85;
-            --tw-color-gray-600: 30 41 59;
-
-            --isc-dark: 248 250 252;
-            --isc-card: 255 255 255;
-            --isc-primary: 0 104 82;
-            --isc-accent: 14 165 233;
-            --isc-neon: 2 132 199;
-            --isc-cyan: 14 165 233;
-            --isc-purple: 99 102 241;
-        }
-
-        .dark {
-            --tw-color-white: 255 255 255;
-            --tw-color-black: 0 0 0;
-            --tw-color-gray-300: 209 213 219;
-            --tw-color-gray-400: 156 163 175;
-            --tw-color-gray-500: 107 114 128;
-            --tw-color-gray-600: 75 85 99;
-
-            --isc-dark: 2 6 23;
-            --isc-card: 15 23 42;
-            --isc-primary: 0 104 82;
-            --isc-accent: 149 214 0;
-            --isc-neon: 149 214 0;
-            --isc-cyan: 0 240 255;
-            --isc-purple: 139 92 246;
-        }
-
-        body {
-            background-color: rgb(var(--isc-dark));
-            color: rgb(var(--tw-color-white));
-            overflow-x: hidden;
-        }
-
-        /* Glassmorphism Utilities */
-        .glass {
-            background: rgb(var(--isc-card) / 0.6);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgb(var(--tw-color-white) / 0.05);
-        }
-
-        .glass-card {
-            background: rgb(var(--isc-card) / 0.4);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgb(var(--tw-color-white) / 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .glass-card:hover {
-            transform: translateY(-5px);
-            border-color: rgb(var(--isc-cyan) / 0.3);
-            box-shadow: 0 10px 40px -10px rgb(var(--isc-accent) / 0.15), 0 0 20px rgb(var(--isc-cyan) / 0.2);
-        }
-
-        .glass-primary {
-            background: rgb(var(--isc-primary) / 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgb(var(--isc-primary) / 0.5);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgb(var(--isc-dark));
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: rgb(var(--isc-card));
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgb(var(--isc-primary));
-        }
-
-        /* Neon Glow Text */
-        .text-glow {
-            text-shadow: 0 0 20px rgba(149, 214, 0, 0.3);
-        }
-
-        /* AI Glow */
-        .text-glow-purple {
-            text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
-        }
-
-        /* Animated Grid Background */
-        .cyber-grid {
-            background-size: 40px 40px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-        }
-
-        /* Loading Spinner */
-        .loader {
-            border: 3px solid rgba(255, 255, 255, 0.1);
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            border-left-color: #95d600;
-            animation: spin 1s linear infinite;
-            display: inline-block;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-    </style>
-    <!-- Global Native Dark Mode -->
 </head>
 
 <body class="antialiased">
@@ -201,27 +39,26 @@
             <div class="flex justify-between items-center py-4">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <img src="./images/Cleveland-Logo-Stacked.png" alt="ISC2 Cleveland Logo" class="h-24 sm:h-28 w-auto object-contain">
+                    <img src="/images/isc2-logo.png" alt="ISC2 Cleveland Logo" class="h-24 sm:h-28 w-auto object-contain">
                 </div>
 
-                <!-- Desktop Menu -->
+                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#home" class="text-sm font-medium text-gray-300 hover:text-isc-neon transition-colors">Home</a>
-                    <a href="#sponsorship" class="text-sm font-medium text-gray-300 hover:text-isc-neon transition-colors">Corporate Sponsorships</a>
                     <a href="#leadership" class="text-sm font-medium text-gray-300 hover:text-isc-neon transition-colors">Leadership</a>
-                    <a href="#membership" class="text-sm font-medium text-gray-300 hover:text-isc-neon transition-colors">Membership</a>
-                    <a href="#events" class="text-sm font-medium text-gray-300 hover:text-isc-neon transition-colors">Events</a>
                     <a href="#ai-toolkit" class="text-sm font-medium text-gray-300 hover:text-isc-neon transition-colors">AI Cyber Toolkit</a>
+                    <a href="#events" class="text-sm font-medium text-gray-300 hover:text-isc-neon transition-colors">Events</a>
                     <a href="#news-feed" class="text-sm font-medium text-gray-300 hover:text-isc-neon transition-colors">News</a>
+                    <a href="#sponsorship" class="text-sm font-medium text-gray-300 hover:text-isc-neon transition-colors">Corporate Sponsorships</a>
+                    <a href="#membership" class="text-sm font-medium text-gray-300 hover:text-isc-neon transition-colors">Membership</a>
                     <a href="#faq" class="text-sm font-medium text-gray-300 hover:text-isc-neon transition-colors">FAQ</a>
-
                 </div>
 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center gap-4">
 
                     <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
-                        <i class="fa-solid fa-bars text-2xl"></i>
+                         <i class="fa-solid fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
@@ -231,21 +68,22 @@
         <div id="mobile-menu" class="hidden md:hidden bg-isc-dark backdrop-blur-3xl shadow-2xl border-t border-white/10 absolute w-full z-[999]">
             <div class="px-4 pt-2 pb-6 space-y-2">
                 <a href="#home" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">Home</a>
-                <a href="#sponsorship" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">Corporate Sponsorships</a>
                 <a href="#leadership" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">Leadership</a>
-                <a href="#membership" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">Membership</a>
-                <a href="#events" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">Events</a>
                 <a href="#ai-toolkit" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">AI Cyber Toolkit</a>
+                <a href="#events" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">Events</a>
                 <a href="#news-feed" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">News</a>
+                <a href="#sponsorship" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">Corporate Sponsorships</a>
+                <a href="#membership" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">Membership</a>
                 <a href="#faq" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">FAQ</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative min-h-[90vh] flex flex-col items-center justify-center pt-48 pb-20 overflow-hidden">
+    <section id="home" class="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden bg-isc-dark">
         <!-- photographic background overlay -->
-        <div class="absolute inset-0 bg-[url('./images/cleveland-skyline.jpg')] bg-cover bg-center bg-no-repeat opacity-20 dark:opacity-80 grayscale mix-blend-multiply dark:mix-blend-screen pointer-events-none"></div>
+        <div class="absolute inset-0 bg-[url('/images/cleveland-skyline.jpg')] bg-cover bg-center bg-no-repeat opacity-20 dark:opacity-55 grayscale mix-blend-multiply dark:mix-blend-screen pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-[#020617]/85 via-[#020617]/45 to-[#020617] pointer-events-none"></div>
         <div class="absolute inset-0 cyber-grid pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center flex flex-col items-center">
@@ -274,7 +112,7 @@
                     Advancing the Cybersecurity Industry & Professionals
                 </h2>
                 
-                <p class="mt-4 text-lg text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                <p class="mt-4 text-lg text-gray-200 max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow-md">
                     We are the premier community for cybersecurity professionals in Northeastern Ohio. Join us to network with experts, share knowledge, and collectively secure the digital future.
                 </p>
 
@@ -300,8 +138,8 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-24 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" class="py-24 relative bg-isc-dark/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="max-w-4xl mx-auto text-center items-center">
                 <!-- Text Content -->
                 <div class="gsap-fade-up">
@@ -383,7 +221,7 @@
                 <!-- Treasurer -->
                 <div class="glass-card p-6 rounded-2xl text-center group border-t border-t-isc-cyan/30 gsap-fade-up hover:-translate-y-2 hover:bg-white/5 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.5)]" style="transition-delay: 100ms;">
                     <div class="w-32 h-32 mx-auto rounded-full xl:w-40 xl:h-40 bg-isc-primary/10 border-2 border-isc-cyan/30 mb-6 overflow-hidden relative shadow-[0_0_15px_rgba(0,240,255,0.1)] group-hover:border-isc-cyan transition-all flex items-center justify-center">
-                        <img src="./images/headshot-glasses.jpg" alt="Ted Kozenko" class="w-full h-full object-cover transition-all group-hover:scale-110">
+                        <img src="/images/headshot-glasses.jpg" alt="Ted Kozenko" class="w-full h-full object-cover transition-all group-hover:scale-110">
                     </div>
                     <h4 class="text-xl font-bold text-white mb-1">Ted Kozenko</h4>
                     <p class="text-isc-cyan text-sm font-cyber tracking-wider mb-4">TREASURER</p>
@@ -400,7 +238,7 @@
                 <!-- Membership -->
                 <div class="glass-card p-6 rounded-2xl text-center group border-t border-t-isc-cyan/30 gsap-fade-up hover:-translate-y-2 hover:bg-white/5 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.5)]" style="transition-delay: 200ms;">
                     <div class="w-32 h-32 mx-auto rounded-full xl:w-40 xl:h-40 bg-isc-primary/10 border-2 border-isc-cyan/30 mb-6 overflow-hidden relative shadow-[0_0_15px_rgba(0,240,255,0.1)] group-hover:border-isc-cyan transition-all flex items-center justify-center">
-                        <img src="./images/geoff-sternecker.jpg" alt="Geoff Sternecker" class="w-full h-full object-cover transition-all group-hover:scale-110">
+                        <img src="/images/geoff-sternecker.jpg" alt="Geoff Sternecker" class="w-full h-full object-cover transition-all group-hover:scale-110">
                     </div>
                     <h4 class="text-xl font-bold text-white mb-1">Geoff Sternecker</h4>
                     <p class="text-isc-cyan text-sm font-cyber tracking-wider mb-4">MEMBERSHIP</p>
@@ -417,7 +255,7 @@
                 <!-- Secretary -->
                 <div class="glass-card p-6 rounded-2xl text-center group border-t border-t-isc-cyan/30 gsap-fade-up hover:-translate-y-2 hover:bg-white/5 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.5)]" style="transition-delay: 300ms;">
                     <div class="w-32 h-32 mx-auto rounded-full xl:w-40 xl:h-40 bg-isc-primary/10 border-2 border-isc-cyan/30 mb-6 overflow-hidden relative shadow-[0_0_15px_rgba(0,240,255,0.1)] group-hover:border-isc-cyan transition-all flex items-center justify-center">
-                        <img src="./images/mary-brewer.jpg" alt="Mary Brewer" class="w-full h-full object-cover transition-all group-hover:scale-110">
+                        <img src="/images/mary-brewer.jpg" alt="Mary Brewer" class="w-full h-full object-cover transition-all group-hover:scale-110">
                     </div>
                     <h4 class="text-xl font-bold text-white mb-1">Mary Brewer</h4>
                     <p class="text-isc-cyan text-sm font-cyber tracking-wider mb-4">SECRETARY</p>
@@ -440,7 +278,7 @@
                 <!-- Volunteer 1: Jason -->
                 <div class="glass-card p-6 rounded-2xl group border-l-[3px] border-l-isc-accent gsap-fade-up hover:bg-white/5 transition-colors duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.3)] flex flex-col items-center gap-4 text-center">
                     <div class="w-20 h-20 rounded-full bg-isc-primary/10 border-2 border-isc-accent/30 overflow-hidden relative flex-shrink-0 flex items-center justify-center group-hover:border-isc-accent transition-colors">
-                        <img src="./images/jason-williams.jpg" alt="Jason Williams" class="w-full h-full object-cover transition-all group-hover:scale-110">
+                        <img src="/images/jason-williams.jpg" alt="Jason Williams" class="w-full h-full object-cover transition-all group-hover:scale-110">
                     </div>
                     <div>
                         <h4 class="text-lg font-bold text-white mb-1">Jason Williams</h4>
@@ -457,7 +295,7 @@
                 <!-- Volunteer 2: Kyle -->
                 <div class="glass-card p-6 rounded-2xl group border-l-[3px] border-l-isc-accent gsap-fade-up hover:bg-white/5 transition-colors duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.3)] flex flex-col items-center gap-4 text-center" style="transition-delay: 100ms;">
                     <div class="w-20 h-20 rounded-full bg-isc-primary/10 border-2 border-isc-accent/30 overflow-hidden relative flex-shrink-0 flex items-center justify-center group-hover:border-isc-accent transition-colors">
-                        <img src="./images/kyle-wetzel.jpg" alt="Kyle Wetzel" class="w-full h-full object-cover transition-all group-hover:scale-110">
+                        <img src="/images/kyle-wetzel.jpg" alt="Kyle Wetzel" class="w-full h-full object-cover transition-all group-hover:scale-110">
                     </div>
                     <div>
                         <h4 class="text-lg font-bold text-white mb-1">Kyle Wetzel</h4>
@@ -474,7 +312,7 @@
                 <!-- Volunteer 3: Mary & Diana -->
                 <div class="glass-card p-6 rounded-2xl group border-l-[3px] border-l-isc-accent gsap-fade-up hover:bg-white/5 transition-colors duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.3)] flex flex-col items-center gap-4 text-center" style="transition-delay: 200ms;">
                     <div class="w-20 h-20 rounded-full bg-isc-primary/10 border-2 border-isc-accent/30 overflow-hidden relative flex-shrink-0 flex items-center justify-center group-hover:border-isc-accent transition-colors">
-                        <img src="./images/diana-sternecker.jpg" alt="Diana Sternecker" class="w-full h-full object-cover transition-all group-hover:scale-110">
+                        <img src="/images/diana-sternecker.jpg" alt="Diana Sternecker" class="w-full h-full object-cover transition-all group-hover:scale-110">
                     </div>
                     <div class="flex flex-col items-center">
                         <h4 class="text-lg font-bold text-white mb-1">Diana Sternecker <span class="mx-1 text-gray-500 font-normal">&</span> Mary Brewer</h4>
@@ -526,8 +364,15 @@
                             <span>✨ Generate Briefing</span>
                         </button>
 
-                        <div id="briefing-result"
-                            class="hidden mt-4 p-4 bg-white/5 rounded-lg border border-white/5 text-gray-300 text-sm leading-relaxed min-h-[100px]">
+                        <div class="relative group">
+                            <div id="briefing-result"
+                                class="hidden mt-4 p-4 bg-white/5 rounded-lg border border-white/5 text-gray-300 text-sm leading-relaxed min-h-[100px] pr-12">
+                            </div>
+                            <button onclick="copyBriefing()" id="briefing-copy-btn"
+                                class="hidden absolute top-3 right-3 p-2 text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded border border-white/10 transition-all text-xs flex items-center gap-1"
+                                title="Copy to clipboard">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -585,13 +430,13 @@
                         <i class="fa-regular fa-calendar-days text-isc-cyan"></i> Annual Calendar
                     </h3>
                     
-                    <div class="space-y-6 mt-8">
+                    <div id="events-list" class="space-y-6 mt-8">
                         <!-- April Meetup -->
                         <div class="group relative bg-white dark:bg-[#020617]/40 border border-white/5 rounded-xl hover:bg-white/5 hover:border-isc-primary transition-all duration-300 overflow-hidden flex flex-col md:flex-row shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
                             <!-- Image Container -->
                             <div class="md:w-2/5 aspect-video md:aspect-auto overflow-hidden relative bg-gray-50 dark:bg-[#020617] flex-shrink-0 flex items-center justify-center border-b md:border-b-0 md:border-r border-white/10 p-4">
                                 <div class="absolute top-0 left-0 py-1 px-3 bg-isc-primary text-white text-xs font-bold rounded-br-lg z-10 shadow-lg">MEETUP</div>
-                                <img src="./images/fortinet-logo.png" alt="April Meetup" class="w-2/3 h-auto object-contain transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100">
+                                <img src="/images/fortinet-logo.png" alt="April Meetup" class="w-2/3 h-auto object-contain transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100">
                             </div>
                             
                             <!-- Content -->
@@ -649,7 +494,7 @@
                             <!-- Image Container -->
                             <div class="md:w-2/5 aspect-video md:aspect-auto overflow-hidden relative bg-white flex-shrink-0 flex items-center justify-center border-b md:border-b-0 md:border-r border-white/10 p-4">
                                 <div class="absolute top-0 left-0 py-1 px-3 bg-isc-accent text-black text-xs font-bold rounded-br-lg z-10 shadow-lg">COMMUNITY</div>
-                                <img src="./images/isc2gether.png" alt="ISC2gether Cleveland" class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105">
+                                <img src="/images/isc2gether.png" alt="ISC2gether Cleveland" class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105">
                             </div>
                             
                             <!-- Content -->
@@ -806,7 +651,7 @@
                 <div class="flex flex-wrap justify-center gap-8 items-center">
                     <!-- TrustedSec Logo -->
                     <a href="https://trustedsec.com/" target="_blank" rel="noopener noreferrer" class="group relative w-64 h-32 block bg-white border border-white/10 rounded-xl flex items-center justify-center p-6 shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-300">
-                        <img src="./images/trustedsec-logo.png" alt="TrustedSec Sponsor" class="max-w-full max-h-full object-contain">
+                        <img src="/images/trustedsec-logo.png" alt="TrustedSec Sponsor" class="max-w-full max-h-full object-contain">
                         <!-- Tooltip indicator -->
                         <div class="absolute -top-3 -right-3 w-6 h-6 bg-isc-cyan rounded-full flex items-center justify-center text-black text-xs font-bold shadow-lg opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300">
                             <i class="fa-solid fa-star"></i>
@@ -815,7 +660,7 @@
 
                     <!-- Fortinet Logo -->
                     <a href="https://www.fortinet.com/" target="_blank" rel="noopener noreferrer" class="group relative w-64 h-32 block bg-white border border-white/10 rounded-xl flex items-center justify-center p-6 shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-300">
-                        <img src="./images/fortinet-logo.png" alt="Fortinet Sponsor" class="max-w-full max-h-full object-contain">
+                        <img src="/images/fortinet-logo.png" alt="Fortinet Sponsor" class="max-w-full max-h-full object-contain">
                         <!-- Tooltip indicator -->
                         <div class="absolute -top-3 -right-3 w-6 h-6 bg-isc-neon rounded-full flex items-center justify-center text-black text-xs font-bold shadow-lg opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300">
                             <i class="fa-solid fa-shield-halved"></i>
@@ -824,7 +669,7 @@
 
                     <!-- Tech Brews Logo -->
                     <a href="https://www.techbrews.co/" target="_blank" rel="noopener noreferrer" class="group relative w-64 h-32 block bg-white border border-white/10 rounded-xl flex items-center justify-center p-6 shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-300">
-                        <img src="./images/techbrews-logo.png" alt="Tech Brews Sponsor" class="max-w-full max-h-full object-contain">
+                        <img src="/images/techbrews-logo.png" alt="Tech Brews Sponsor" class="max-w-full max-h-full object-contain">
                         <!-- Tooltip indicator -->
                         <div class="absolute -top-3 -right-3 w-6 h-6 bg-isc-primary rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300">
                             <i class="fa-solid fa-mug-hot"></i>
@@ -934,7 +779,7 @@
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-8">
                 <div class="max-w-md">
                     <div class="flex items-center gap-3 mb-6">
-                        <img src="./images/Cleveland-Logo-Stacked.png" alt="ISC2 Cleveland Logo" class="h-20 sm:h-24 w-auto object-contain">
+                        <img src="/images/isc2-logo.png" alt="ISC2 Cleveland Logo" class="h-20 sm:h-24 w-auto object-contain">
                     </div>
                     <p class="text-gray-400 text-sm leading-relaxed mb-4">
                         Building a secure digital future for Northeastern Ohio through education, advocacy, and
@@ -975,17 +820,13 @@
         // Gemini API Implementation
         // ----------------------------------------------------
 
-        const apiKey = "%VITE_GEMINI_API_KEY%"; // Set via .env file
-
         async function callGeminiAPI(systemPrompt, userPrompt) {
             if (!userPrompt.trim()) return "Please enter some text.";
 
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+            // Calls our serverless proxy (api/gemini.js); the API key stays server-side.
+            const url = "/api/gemini";
 
-            const payload = {
-                contents: [{ parts: [{ text: userPrompt }] }],
-                systemInstruction: { parts: [{ text: systemPrompt }] }
-            };
+            const payload = { systemPrompt, userPrompt };
 
             // Backoff logic: delays in ms
             const delays = [1000, 2000, 4000, 8000, 16000];
@@ -1006,16 +847,16 @@
                             }
                         }
                         const errData = await response.json().catch(() => ({}));
-                        throw new Error(`API Error ${response.status}: ${errData?.error?.message || "Invalid Request"}`);
+                        throw new Error(`API Error ${response.status}: ${errData?.error || "Invalid Request"}`);
                     }
 
                     const data = await response.json();
-                    return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
+                    return data.text || "No response generated.";
 
                 } catch (error) {
                     console.error("Gemini API Failure:", error);
                     if (i === delays.length || error.message.includes("400") || error.message.includes("403")) {
-                        return `❌ **API Connection Failed:** ${error.message}\n\n*(Debug ID: ${apiKey.substring(0, 5)}...)*`;
+                        return `❌ **API Connection Failed:** ${error.message}`;
                     }
                 }
             }
@@ -1026,6 +867,7 @@
             const input = document.getElementById('briefing-input').value;
             const resultDiv = document.getElementById('briefing-result');
             const btn = document.getElementById('briefing-btn');
+            const copyBtn = document.getElementById('briefing-copy-btn');
 
             if (!input) return;
 
@@ -1034,6 +876,7 @@
             btn.disabled = true;
             resultDiv.classList.remove('hidden');
             resultDiv.innerHTML = '<div class="flex items-center gap-2"><div class="loader"></div> Analyzing global threat vectors...</div>';
+            copyBtn.classList.add('hidden');
 
             const systemPrompt = "You are a CISO advisor. Provide a high-level, 3-bullet point executive summary on the cybersecurity topic provided by the user. Focus on risks and mitigation strategies. Be professional, concise, and use formatting like **Bold** for emphasis.";
 
@@ -1041,10 +884,33 @@
 
             // Render Result
             resultDiv.innerHTML = marked.parse(response);
+            copyBtn.classList.remove('hidden');
 
             // Reset UI
             btn.innerHTML = '<span>✨ Generate Briefing</span>';
             btn.disabled = false;
+        }
+
+        function copyBriefing() {
+            const resultDiv = document.getElementById('briefing-result');
+            const textToCopy = resultDiv.textContent || resultDiv.innerText || "";
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const copyBtn = document.getElementById('briefing-copy-btn');
+                const originalHtml = copyBtn.innerHTML;
+                
+                copyBtn.innerHTML = '<i class="fa-solid fa-check text-green-400"></i> Copied!';
+                copyBtn.classList.remove('text-gray-400');
+                copyBtn.classList.add('text-green-400', 'border-green-500/30');
+                
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalHtml;
+                    copyBtn.classList.add('text-gray-400');
+                    copyBtn.classList.remove('text-green-400', 'border-green-500/30');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
         }
 
         // Feature 2: Phishing Analyzer
@@ -1164,8 +1030,236 @@
             }
         }
 
-        // Init News
+        // Feature 3.5: Sanity Events Integration
+        async function fetchSanityEvents() {
+            const projectId = "%VITE_SANITY_PROJECT_ID%";
+            const dataset = "%VITE_SANITY_DATASET%" || 'production';
+
+            if (!projectId || projectId.startsWith('%') || projectId === 'undefined' || projectId === 'null') {
+                console.log('Sanity Project ID not configured. Using static fallback events.');
+                return;
+            }
+
+            const query = encodeURIComponent(`*[_type == "event"] | order(startDate asc){
+                title,
+                eventType,
+                startDate,
+                endDate,
+                startTime,
+                endTime,
+                location,
+                isVirtual,
+                speakerName,
+                topic,
+                description,
+                link,
+                linkText,
+                "imageUrl": image.asset->url
+            }`);
+            
+            const url = `https://${projectId}.api.sanity.io/v2022-03-07/data/query/${dataset}?query=${query}`;
+            const container = document.getElementById('events-list');
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const data = await response.json();
+                
+                if (data.result && data.result.length > 0) {
+                    renderSanityEvents(data.result);
+                }
+            } catch (err) {
+                console.error('Failed to load events from Sanity:', err);
+                // Gracefully fallback: static HTML remains in the container
+            }
+        }
+
+        function portableTextToHtml(blocks) {
+            if (!blocks || !Array.isArray(blocks)) return '';
+            
+            return blocks.map(block => {
+                if (block._type !== 'block' || !block.children) return '';
+                
+                const childrenHtml = block.children.map(child => {
+                    let text = child.text || '';
+                    // Escape HTML characters
+                    text = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                    
+                    if (child.marks && child.marks.length > 0) {
+                        child.marks.forEach(mark => {
+                            if (mark === 'strong') text = `<strong>${text}</strong>`;
+                            if (mark === 'em') text = `<em>${text}</em>`;
+                            if (mark === 'code') text = `<code class="bg-black/30 px-1 py-0.5 rounded text-xs font-mono text-isc-cyan">${text}</code>`;
+                            
+                            if (block.markDefs) {
+                                const linkDef = block.markDefs.find(def => def._key === mark);
+                                if (linkDef && linkDef._type === 'link') {
+                                    text = `<a href="${linkDef.href}" target="_blank" rel="noopener noreferrer" class="text-isc-accent hover:underline decoration-isc-accent/50">${text}</a>`;
+                                }
+                            }
+                        });
+                    }
+                    return text;
+                }).join('');
+
+                if (block.style === 'h1') return `<h1 class="text-2xl font-bold text-white mt-4 mb-2">${childrenHtml}</h1>`;
+                if (block.style === 'h2') return `<h2 class="text-xl font-bold text-white mt-3 mb-2">${childrenHtml}</h2>`;
+                if (block.style === 'h3') return `<h3 class="text-lg font-bold text-white mt-3 mb-1">${childrenHtml}</h3>`;
+                if (block.style === 'blockquote') return `<blockquote class="border-l-4 border-isc-primary pl-4 italic my-3 text-gray-400 bg-white/5 py-1 pr-2 rounded-r">${childrenHtml}</blockquote>`;
+                
+                return `<p class="mb-2 leading-relaxed">${childrenHtml}</p>`;
+            }).join('');
+        }
+
+        function renderSanityEvents(events) {
+            const container = document.getElementById('events-list');
+            if (!container) return;
+            
+            container.innerHTML = ''; // Clear hardcoded fallback events
+
+            events.forEach(event => {
+                const type = (event.eventType || 'meetup').toUpperCase();
+                
+                if (type === 'HOLIDAY') {
+                    container.innerHTML += `
+                        <div class="flex items-center gap-4 text-gray-500 text-sm bg-black/30 p-4 rounded-xl border border-dashed border-gray-700">
+                            <i class="fa-solid fa-snowflake text-lg w-8 text-center text-gray-600"></i>
+                            <div>
+                                <strong class="block text-gray-800 dark:text-gray-400">${event.title}</strong>
+                                <p class="text-sm text-gray-600 dark:text-gray-500 mt-1">${event.description || ''}</p>
+                            </div>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // Determine styles based on eventType
+                let badgeBg = 'bg-isc-primary';
+                let borderHover = 'hover:border-isc-primary';
+                let textHover = 'group-hover:text-isc-cyan';
+                let iconColor = 'text-isc-accent';
+                let shadowColor = 'shadow-[0_0_10px_rgba(0,119,181,0.2)]';
+                let btnClass = 'bg-isc-primary/20 hover:bg-isc-primary text-white border-isc-primary/50';
+
+                if (type === 'STUDY GROUP' || type === 'STUDY-GROUP') {
+                    badgeBg = 'bg-isc-purple';
+                    borderHover = 'hover:border-isc-purple';
+                    textHover = 'group-hover:text-isc-purple';
+                    iconColor = 'text-isc-purple';
+                    shadowColor = 'shadow-[0_0_10px_rgba(168,85,247,0.2)]';
+                    btnClass = 'bg-isc-purple/20 hover:bg-isc-purple text-white border-isc-purple/50';
+                } else if (type === 'COMMUNITY') {
+                    badgeBg = 'bg-isc-accent text-black';
+                    borderHover = 'hover:border-isc-accent';
+                    textHover = 'group-hover:text-isc-accent';
+                    iconColor = 'text-isc-accent';
+                    shadowColor = 'shadow-[0_0_10px_rgba(11,219,161,0.2)]';
+                    btnClass = 'bg-isc-accent/20 hover:bg-isc-accent hover:text-black text-isc-accent border-isc-accent/50';
+                }
+
+                // Format Date & Time
+                const dateStr = event.startDate ? new Date(event.startDate).toLocaleDateString("en-US", {
+                    weekday: 'long',
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                }) : '';
+                const timeStr = event.startTime && event.endTime ? `${event.startTime} - ${event.endTime}` : (event.startTime || '');
+
+                // Left media area
+                let mediaHtml = '';
+                if (event.imageUrl) {
+                    mediaHtml = `
+                        <div class="md:w-2/5 aspect-video md:aspect-auto overflow-hidden relative bg-white flex-shrink-0 flex items-center justify-center border-b md:border-b-0 md:border-r border-white/10 p-4">
+                            <div class="absolute top-0 left-0 py-1 px-3 ${badgeBg} text-white text-xs font-bold rounded-br-lg z-10 shadow-lg">${type}</div>
+                            <img src="${event.imageUrl}" alt="${event.title}" class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105">
+                        </div>
+                    `;
+                } else if (type === 'STUDY GROUP' || type === 'STUDY-GROUP') {
+                    mediaHtml = `
+                        <div class="md:w-2/5 aspect-video md:aspect-auto overflow-hidden relative bg-black flex-shrink-0 flex items-center justify-center border-b md:border-b-0 md:border-r border-white/10 p-8">
+                            <div class="absolute inset-0 bg-isc-purple/10 pointer-events-none"></div>
+                            <div class="absolute top-0 left-0 py-1 px-3 ${badgeBg} text-white text-xs font-bold rounded-br-lg z-10 shadow-lg">${type}</div>
+                            <i class="fa-solid fa-cloud text-[8rem] text-isc-purple/20 group-hover:text-isc-purple/40 transition-colors duration-700 group-hover:scale-110"></i>
+                            <span class="absolute text-3xl font-bold font-cyber tracking-widest text-white/50 group-hover:text-white transition-colors duration-700 group-hover:scale-110">CCSP</span>
+                        </div>
+                    `;
+                } else {
+                    mediaHtml = `
+                        <div class="md:w-2/5 aspect-video md:aspect-auto overflow-hidden relative bg-gray-50 dark:bg-[#020617] flex-shrink-0 flex items-center justify-center border-b md:border-b-0 md:border-r border-white/10 p-4">
+                            <div class="absolute top-0 left-0 py-1 px-3 ${badgeBg} text-white text-xs font-bold rounded-br-lg z-10 shadow-lg">${type}</div>
+                            <i class="fa-solid fa-calendar-check text-[8rem] text-gray-700 dark:text-white/5 group-hover:scale-105 transition-transform duration-700"></i>
+                        </div>
+                    `;
+                }
+
+                // Speaker and Topic details
+                let speakerTopicHtml = '';
+                if (event.speakerName || event.topic) {
+                    speakerTopicHtml = `
+                        <div class="text-gray-300 text-sm leading-relaxed mb-4 space-y-2">
+                            ${event.speakerName ? `
+                                <p>
+                                    <strong class="text-white block mb-1">Speaker: ${event.speakerName}</strong>
+                                </p>
+                            ` : ''}
+                            ${event.topic ? `<p class="text-isc-cyan font-bold">Topic: "${event.topic}"</p>` : ''}
+                        </div>
+                    `;
+                }
+
+                // Location logic
+                let locationHtml = '';
+                if (event.isVirtual) {
+                    locationHtml = `<span class="flex items-center gap-1.5 text-isc-purple font-medium"><i class="fa-solid fa-video"></i> Virtual Event</span>`;
+                } else if (event.location) {
+                    const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location)}`;
+                    locationHtml = `<a href="${mapUrl}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 hover:underline hover:text-white transition-colors"><i class="fa-solid fa-location-dot ${iconColor}"></i> ${event.location}</a>`;
+                }
+
+                // Description logic (Plain text or Portable Text array)
+                let descriptionHtml = '';
+                if (event.description) {
+                    if (Array.isArray(event.description)) {
+                        descriptionHtml = `<div class="text-gray-300 text-sm mb-6">${portableTextToHtml(event.description)}</div>`;
+                    } else {
+                        descriptionHtml = `<p class="text-gray-300 text-sm mb-6">${event.description}</p>`;
+                    }
+                }
+
+                // Button logic
+                const fallbackLabel = type === 'STUDY GROUP' || type === 'STUDY-GROUP' ? 'RSVP on Eventbrite' : 'Event Details';
+                const buttonLabel = event.linkText || fallbackLabel;
+
+                container.innerHTML += `
+                    <div class="group relative bg-white dark:bg-[#020617]/40 border border-white/5 rounded-xl hover:bg-white/5 ${borderHover} transition-all duration-300 overflow-hidden flex flex-col md:flex-row shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+                        ${mediaHtml}
+                        <div class="p-6 flex flex-col justify-center flex-grow">
+                            <h4 class="text-xl font-bold text-white mb-2 ${textHover} transition-colors">${event.title}</h4>
+                            <div class="flex flex-wrap gap-4 text-sm text-gray-400 mb-4">
+                                ${timeStr ? `<span class="flex items-center gap-1"><i class="fa-solid fa-clock ${iconColor}"></i> ${timeStr}</span>` : ''}
+                                ${dateStr ? `<span class="flex items-center gap-1"><i class="fa-solid fa-calendar ${iconColor}"></i> ${dateStr}</span>` : ''}
+                                ${locationHtml ? `<span class="flex items-center gap-1">${locationHtml}</span>` : ''}
+                            </div>
+                            ${speakerTopicHtml}
+                            ${descriptionHtml}
+                            ${event.link ? `
+                                <div class="mt-auto">
+                                    <a href="${event.link}" target="_blank" rel="noopener noreferrer" class="inline-block px-5 py-2.5 ${btnClass} font-bold text-sm rounded-lg transition-all border ${shadowColor}">${buttonLabel} <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Re-trigger scroll trigger to recognize newly loaded DOM elements
+            ScrollTrigger.refresh();
+        }
+
+        // Init News & Sanity Events
         fetchNews();
+        fetchSanityEvents();
 
         // Feature 4: Job Board (Simulated)
         function scanForJobs() {
@@ -1265,25 +1359,39 @@
                 },
                 opacity: 0,
                 y: 50,
-                duration: 0.8
+                duration: 0.8,
+                clearProps: "all",
+                onComplete: () => {
+                    if (element.classList.contains('glass-card')) {
+                        element.classList.add('hover-ready');
+                    }
+                }
             });
         });
 
         // About Grid
         gsap.from('.gsap-fade-right', {
             scrollTrigger: { trigger: '#about', start: "top 75%" },
-            x: -50, opacity: 0, duration: 1
+            x: -50, opacity: 0, duration: 1,
+            clearProps: "all"
         });
 
         gsap.from('.gsap-fade-left', {
             scrollTrigger: { trigger: '#about', start: "top 75%" },
-            x: 50, opacity: 0, duration: 1, delay: 0.2
+            x: 50, opacity: 0, duration: 1, delay: 0.2,
+            clearProps: "all"
         });
 
         // Bento Grid Stagger
         gsap.from('.gsap-bento', {
             scrollTrigger: { trigger: '#membership', start: "top 75%" },
-            y: 30, opacity: 0, duration: 0.8, stagger: 0.1
+            y: 30, opacity: 0, duration: 0.8, stagger: 0.1,
+            clearProps: "all",
+            onComplete: () => {
+                document.querySelectorAll('.gsap-bento').forEach(el => {
+                    el.classList.add('hover-ready');
+                });
+            }
         });
 
         // 4. Canvas Particle Network Animation
