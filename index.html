@@ -564,7 +564,7 @@
                     <button onclick="filterNews('vuln')" id="filter-vuln"
                         class="news-filter px-4 py-2 rounded-full text-sm font-bold border border-white/10 text-gray-400 transition-all hover:border-isc-cyan hover:text-isc-cyan">Vulnerabilities</button>
                     <button onclick="filterNews('cloud')" id="filter-cloud"
-                        class="news-filter px-4 py-2 rounded-full text-sm font-bold border border-white/10 text-gray-400 transition-all hover:border-isc-primary hover:text-isc-primary">Cloud & DevOps</button>
+                        class="news-filter px-4 py-2 rounded-full text-sm font-bold border border-white/10 text-gray-400 transition-all hover:border-blue-400 hover:text-blue-400">Cloud & DevOps</button>
                 </div>
             </div>
 
@@ -1015,10 +1015,10 @@
                     hoverShadow = 'hover:shadow-[0_4px_30px_rgba(0,240,255,0.08)]';
                     hoverTitle = 'group-hover:text-isc-cyan';
                 } else if (category === 'Cloud & DevOps') {
-                    badgeColor = 'text-isc-primary bg-isc-primary/10 border-isc-primary/20';
-                    hoverBorder = 'hover:border-isc-primary/30';
-                    hoverShadow = 'hover:shadow-[0_4px_30px_rgba(0,119,181,0.08)]';
-                    hoverTitle = 'group-hover:text-isc-primary';
+                    badgeColor = 'text-blue-400 bg-blue-400/10 border-blue-400/20';
+                    hoverBorder = 'hover:border-blue-400/30';
+                    hoverShadow = 'hover:shadow-[0_4px_30px_rgba(96,165,250,0.08)]';
+                    hoverTitle = 'group-hover:text-blue-400';
                 }
 
                 const card = document.createElement('div');
