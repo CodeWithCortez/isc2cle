@@ -57,7 +57,8 @@
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center gap-4">
 
-                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none"
+                        aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
                          <i class="fa-solid fa-bars text-2xl"></i>
                     </button>
                 </div>
@@ -356,7 +357,7 @@
                         3-point executive summary suitable for leadership updates.</p>
 
                     <div class="space-y-4 mt-auto">
-                        <input type="text" id="briefing-input" placeholder="Enter cyber topic..."
+                        <input type="text" id="briefing-input" placeholder="Enter cyber topic..." aria-label="Enter threat briefing topic"
                             class="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-isc-purple transition-colors">
 
                         <button onclick="generateBriefing()" id="briefing-btn"
@@ -370,7 +371,7 @@
                             </div>
                             <button onclick="copyBriefing()" id="briefing-copy-btn"
                                 class="hidden absolute top-3 right-3 p-2 text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded border border-white/10 transition-all text-xs flex items-center gap-1"
-                                title="Copy to clipboard">
+                                title="Copy to clipboard" aria-label="Copy threat briefing to clipboard">
                                 <i class="fa-regular fa-copy"></i>
                             </button>
                         </div>
@@ -392,7 +393,7 @@
                         analyze tone, urgency, and inconsistencies to detect potential social engineering.</p>
 
                     <div class="space-y-4 mt-auto">
-                        <textarea id="phish-input" rows="3" placeholder="Paste email text here..."
+                        <textarea id="phish-input" rows="3" placeholder="Paste email text here..." aria-label="Paste suspicious email text to analyze"
                             class="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-isc-accent transition-colors resize-none"></textarea>
 
                         <button onclick="analyzePhish()" id="phish-btn"
@@ -424,10 +425,10 @@
 
             <div class="grid grid-cols-1 gap-8">
                 
-                <!-- Annual Calendar (Full Width) -->
+                <!-- Chapter Schedule (Full Width) -->
                 <div class="glass-card rounded-2xl p-8 md:p-12 relative overflow-hidden gsap-fade-up">
                     <h3 class="text-2xl font-bold text-white mb-2 border-b border-isc-primary/30 pb-4 flex items-center gap-3">
-                        <i class="fa-regular fa-calendar-days text-isc-cyan"></i> Annual Calendar
+                        <i class="fa-regular fa-calendar-days text-isc-cyan"></i> Chapter Schedule
                     </h3>
                     
                     <div id="events-list" class="space-y-6 mt-8">
@@ -556,14 +557,15 @@
                 <!-- Filter Buttons -->
                 <div class="flex flex-wrap gap-2">
                     <button onclick="filterNews('all')" id="filter-all"
-                        class="news-filter active px-4 py-2 rounded-full text-sm font-bold border border-isc-neon bg-isc-neon/10 text-isc-neon transition-all hover:bg-isc-neon hover:text-isc-dark">All</button>
-                    <button onclick="filterNews('ransomware')" id="filter-ransomware"
-                        class="news-filter px-4 py-2 rounded-full text-sm font-bold border border-white/10 text-gray-400 transition-all hover:border-isc-accent hover:text-isc-accent">Ransomware</button>
+                        class="news-filter active px-4 py-2 rounded-full text-sm font-bold border border-white bg-white text-black transition-all hover:bg-white/90">All</button>
+                    <button onclick="filterNews('threat')" id="filter-threat"
+                        class="news-filter px-4 py-2 rounded-full text-sm font-bold border border-white/10 text-gray-400 transition-all hover:border-isc-accent hover:text-isc-accent">Threat Intel</button>
                     <button onclick="filterNews('ai')" id="filter-ai"
-                        class="news-filter px-4 py-2 rounded-full text-sm font-bold border border-white/10 text-gray-400 transition-all hover:border-isc-purple hover:text-isc-purple">AI
-                        Safety</button>
+                        class="news-filter px-4 py-2 rounded-full text-sm font-bold border border-white/10 text-gray-400 transition-all hover:border-isc-purple hover:text-isc-purple">AI Security</button>
+                    <button onclick="filterNews('vuln')" id="filter-vuln"
+                        class="news-filter px-4 py-2 rounded-full text-sm font-bold border border-white/10 text-gray-400 transition-all hover:border-isc-cyan hover:text-isc-cyan">Vulnerabilities</button>
                     <button onclick="filterNews('cloud')" id="filter-cloud"
-                        class="news-filter px-4 py-2 rounded-full text-sm font-bold border border-white/10 text-gray-400 transition-all hover:border-isc-primary hover:text-white">Cloud</button>
+                        class="news-filter px-4 py-2 rounded-full text-sm font-bold border border-white/10 text-gray-400 transition-all hover:border-blue-400 hover:text-blue-400">Cloud & DevOps</button>
                 </div>
             </div>
 
@@ -605,7 +607,6 @@
             <!-- Single Sponsor Tier Logic -->
             <div class="max-w-4xl mx-auto glass-primary p-10 md:p-14 rounded-3xl relative overflow-hidden shadow-[0_0_40px_rgba(0,104,82,0.2)] mb-16">
                 <!-- Decorative Glows -->
-                <div class="absolute top-0 right-0 w-48 h-48 bg-isc-cyan/10 rounded-bl-[150px] -z-10 transition-colors"></div>
                 <div class="absolute bottom-0 left-0 w-32 h-32 bg-isc-primary/20 rounded-tr-[100px] -z-10 blur-xl"></div>
                 
                 <div class="flex flex-col md:flex-row gap-12 items-center">
@@ -622,14 +623,14 @@
                         
                         <ul class="space-y-4 mb-8">
                             <li class="flex items-start gap-4 text-gray-300">
-                                <div class="mt-1 bg-isc-cyan/20 p-1 rounded-full"><i class="fa-solid fa-clock text-xs text-isc-cyan w-3 text-center"></i></div>
+                                <div class="mt-1"><i class="fa-solid fa-clock text-isc-cyan w-5 text-center text-sm"></i></div>
                                 <div>
                                     <strong class="text-white block mb-1">Extended Visibility Window</strong>
                                     Sponsors get a plug on our page for the duration of the cycle (e.g., if you sponsor the April meeting, your logo stays up until the end of June).
                                 </div>
                             </li>
                             <li class="flex items-start gap-4 text-gray-300">
-                                <div class="mt-1 bg-isc-neon/20 p-1 rounded-full"><i class="fa-solid fa-rotate text-xs text-isc-neon w-3 text-center"></i></div>
+                                <div class="mt-1"><i class="fa-solid fa-rotate text-isc-neon w-5 text-center text-sm"></i></div>
                                 <div>
                                     <strong class="text-white block mb-1">Annual & Recurring</strong>
                                     Looking for massive brand exposure? We gladly welcome annual or recurring monthly sponsorships!
@@ -799,17 +800,17 @@
                             class="w-10 h-10 rounded-full bg-white/5 hover:bg-[#0077b5] hover:text-white flex items-center justify-center text-gray-400 transition-all duration-300" title="LinkedIn">
                             <i class="fa-brands fa-linkedin-in text-lg"></i>
                         </a>
-                        <a href="https://www.eventbrite.com/o/isc2-cleveland-chapter-30799753066" target="_blank"
-                            class="w-10 h-10 rounded-full bg-white/5 hover:bg-[#F05537] hover:text-white flex items-center justify-center text-gray-400 transition-all duration-300" title="EventBrite">
+                        <a href="https://www.eventbrite.com/o/2712312206" target="_blank"
+                            class="w-10 h-10 rounded-full bg-white/5 hover:bg-[#F05537] hover:text-white flex items-center justify-center text-gray-400 transition-all duration-300" title="EventBrite" aria-label="EventBrite">
                             <i class="fa-solid fa-ticket text-lg"></i>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-600 gap-4 text-center md:text-left">
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 gap-4 text-center md:text-left">
                 <p>&copy; 2026 ISC2 Cleveland Chapter. All rights reserved.</p>
-                <p>Design by Weblytics</p>
+                <p>Design by <a href="https://www.weblytics.digital/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Weblytics</a></p>
             </div>
         </div>
     </footer>
@@ -820,13 +821,13 @@
         // Gemini API Implementation
         // ----------------------------------------------------
 
-        async function callGeminiAPI(systemPrompt, userPrompt) {
+        async function callGeminiAPI(mode, userPrompt) {
             if (!userPrompt.trim()) return "Please enter some text.";
 
             // Calls our serverless proxy (api/gemini.js); the API key stays server-side.
             const url = "/api/gemini";
 
-            const payload = { systemPrompt, userPrompt };
+            const payload = { mode, userPrompt };
 
             // Backoff logic: delays in ms
             const delays = [1000, 2000, 4000, 8000, 16000];
@@ -878,9 +879,7 @@
             resultDiv.innerHTML = '<div class="flex items-center gap-2"><div class="loader"></div> Analyzing global threat vectors...</div>';
             copyBtn.classList.add('hidden');
 
-            const systemPrompt = "You are a CISO advisor. Provide a high-level, 3-bullet point executive summary on the cybersecurity topic provided by the user. Focus on risks and mitigation strategies. Be professional, concise, and use formatting like **Bold** for emphasis.";
-
-            const response = await callGeminiAPI(systemPrompt, input);
+            const response = await callGeminiAPI('briefing', input);
 
             // Render Result
             resultDiv.innerHTML = marked.parse(response);
@@ -927,9 +926,7 @@
             resultDiv.classList.remove('hidden');
             resultDiv.innerHTML = '<div class="flex items-center gap-2"><div class="loader"></div> Scanning for social engineering indicators...</div>';
 
-            const systemPrompt = "You are a security analyst training a user. Analyze the provided email text for phishing indicators (urgency, inconsistencies, suspicious requests, bad grammar). Provide a 'Risk Level' (Low, Medium, High) and 2-3 short reasons why. Keep it educational and concise.";
-
-            const response = await callGeminiAPI(systemPrompt, input);
+            const response = await callGeminiAPI('phishing', input);
 
             // Render Result
             resultDiv.innerHTML = marked.parse(response);
@@ -965,6 +962,24 @@
             }
         }
 
+        function detectCategory(title, description) {
+            const text = (title + ' ' + description).toLowerCase();
+            // AI Security: matches ai, gpt, intelligence, agent, assistant, chatbot, llm, bot, copilot, amazon q, model context
+            if (/\bai\b/.test(text) || text.includes('gpt') || text.includes('intelligence') || text.includes('agent') || text.includes('assistant') || text.includes('chatbot') || text.includes('llm') || text.includes('bot') || text.includes('copilot') || text.includes('mcp')) {
+                return 'AI Security';
+            }
+            // Vulnerabilities: matches exploit, vulnerability, cve, rce, flaw, bug, bypass, patch, cow, dirtyclone, privilege escalation, zero-day
+            if (text.includes('exploit') || text.includes('vulnerability') || text.includes('cve-') || text.includes('rce') || text.includes('flaw') || text.includes('bug') || text.includes('bypass') || text.includes('patch') || text.includes('cow') || text.includes('dirty') || text.includes('escalation') || text.includes('zero-day')) {
+                return 'Vulnerabilities';
+            }
+            // Cloud & DevOps: matches cloud, aws, amazon, azure, kubernetes, docker, saas, repo, git, infrastructure, web shell, database, server
+            if (text.includes('cloud') || text.includes('aws') || text.includes('amazon') || text.includes('azure') || text.includes('kubernetes') || text.includes('docker') || text.includes('saas') || text.includes('repo') || text.includes('git') || text.includes('infrastructure') || text.includes('web shell') || text.includes('database') || text.includes('server')) {
+                return 'Cloud & DevOps';
+            }
+            // Fallback: Threat Intel (threat, actor, malware, ransomware, attack, phishing, hacker, campaign, espionage, cisa, gov, spy)
+            return 'Threat Intel';
+        }
+
         function renderNews(items) {
             const grid = document.getElementById('news-grid');
             grid.innerHTML = '';
@@ -977,8 +992,33 @@
             // Limit to 6 items
             items.slice(0, 6).forEach(item => {
                 const date = new Date(item.pubDate).toLocaleDateString("en-US", { month: 'short', day: 'numeric' });
+                const category = detectCategory(item.title, item.description);
+                
+                // Color coding rules based on category
+                let badgeColor = 'text-isc-accent bg-isc-accent/10 border-isc-accent/20';
+                let hoverBorder = 'hover:border-isc-accent/30';
+                let hoverShadow = 'hover:shadow-[0_4px_30px_rgba(11,219,161,0.08)]';
+                let hoverTitle = 'group-hover:text-isc-accent';
+
+                if (category === 'AI Security') {
+                    badgeColor = 'text-isc-purple bg-isc-purple/10 border-isc-purple/20';
+                    hoverBorder = 'hover:border-isc-purple/30';
+                    hoverShadow = 'hover:shadow-[0_4px_30px_rgba(168,85,247,0.08)]';
+                    hoverTitle = 'group-hover:text-isc-purple';
+                } else if (category === 'Vulnerabilities') {
+                    badgeColor = 'text-isc-cyan bg-isc-cyan/10 border-isc-cyan/20';
+                    hoverBorder = 'hover:border-isc-cyan/30';
+                    hoverShadow = 'hover:shadow-[0_4px_30px_rgba(0,240,255,0.08)]';
+                    hoverTitle = 'group-hover:text-isc-cyan';
+                } else if (category === 'Cloud & DevOps') {
+                    badgeColor = 'text-blue-400 bg-blue-400/10 border-blue-400/20';
+                    hoverBorder = 'hover:border-blue-400/30';
+                    hoverShadow = 'hover:shadow-[0_4px_30px_rgba(96,165,250,0.08)]';
+                    hoverTitle = 'group-hover:text-blue-400';
+                }
+
                 const card = document.createElement('div');
-                card.className = 'glass-card p-6 rounded-xl flex flex-col h-full group hover:bg-white/5 transition-all';
+                card.className = `glass-card p-6 rounded-xl flex flex-col h-full group hover:bg-white/5 border border-white/5 ${hoverBorder} ${hoverShadow} transition-all duration-300`;
 
                 // Extract a simplified description (remove HTML tags)
                 const tempDiv = document.createElement("div");
@@ -991,12 +1031,13 @@
                         <span class="text-xs font-bold text-isc-neon bg-isc-neon/10 px-2 py-1 rounded">${date}</span>
                         <a href="${item.link}" target="_blank" class="text-gray-400 hover:text-white"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
-                    <h4 class="text-lg font-bold text-white mb-3 group-hover:text-isc-accent transition-colors leading-tight">
+                    <h4 class="text-lg font-bold text-white mb-3 ${hoverTitle} transition-colors leading-tight">
                         <a href="${item.link}" target="_blank">${item.title}</a>
                     </h4>
                     <p class="text-gray-400 text-sm mb-4 flex-grow">${shortDesc}</p>
-                    <div class="mt-auto pt-4 border-t border-white/5 flex items-center gap-2 text-xs text-gray-500">
-                        <i class="fa-regular fa-bookmark"></i> ${item.categories[0] || 'Cybersecurity'}
+                    <div class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between text-xs text-gray-500">
+                        <span class="flex items-center gap-1.5"><i class="fa-regular fa-bookmark"></i> Read Article</span>
+                        <span class="px-2.5 py-0.5 rounded border ${badgeColor} font-semibold text-[10px] tracking-wider uppercase">${category}</span>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -1007,24 +1048,47 @@
         }
 
         function filterNews(category) {
-            // UI State
-            document.querySelectorAll('.news-filter').forEach(btn => {
-                btn.classList.remove('active', 'border-isc-neon', 'bg-isc-neon/10', 'text-isc-neon');
-                btn.classList.add('border-white/10', 'text-gray-400');
+            const buttons = {
+                all: { active: ['bg-white', 'text-black', 'border-white'] },
+                threat: { active: ['bg-isc-accent/15', 'border-isc-accent', 'text-isc-accent'] },
+                ai: { active: ['bg-isc-purple/15', 'border-isc-purple', 'text-isc-purple'] },
+                vuln: { active: ['bg-isc-cyan/15', 'border-isc-cyan', 'text-isc-cyan'] },
+                cloud: { active: ['bg-blue-400/15', 'border-blue-400', 'text-blue-400'] }
+            };
+
+            // Reset all filter buttons to inactive state
+            Object.keys(buttons).forEach(key => {
+                const btn = document.getElementById(`filter-${key}`);
+                if (btn) {
+                    btn.classList.remove('active', 'bg-white', 'text-black', 'border-white', 
+                        'bg-isc-accent/15', 'border-isc-accent', 'text-isc-accent',
+                        'bg-isc-purple/15', 'border-isc-purple', 'text-isc-purple',
+                        'bg-isc-cyan/15', 'border-isc-cyan', 'text-isc-cyan',
+                        'bg-blue-400/15', 'border-blue-400', 'text-blue-400',
+                        'border-isc-neon', 'bg-isc-neon/10', 'text-isc-neon'
+                    );
+                    btn.classList.add('border-white/10', 'text-gray-400');
+                }
             });
 
+            // Set the active button to its corresponding active styling
             const activeBtn = document.getElementById(`filter-${category}`);
-            activeBtn.classList.remove('border-white/10', 'text-gray-400');
-            activeBtn.classList.add('active', 'border-isc-neon', 'bg-isc-neon/10', 'text-isc-neon');
+            if (activeBtn && buttons[category]) {
+                activeBtn.classList.remove('border-white/10', 'text-gray-400');
+                activeBtn.classList.add('active', ...buttons[category].active);
+            }
 
             // Logic
             if (category === 'all') {
                 renderNews(allNews);
             } else {
                 const filtered = allNews.filter(item => {
-                    const text = (item.title + ' ' + item.description).toLowerCase();
-                    if (category === 'ai') return text.includes('ai') || text.includes('gpt') || text.includes('intelligence');
-                    return text.includes(category);
+                    const detected = detectCategory(item.title, item.description);
+                    if (category === 'threat') return detected === 'Threat Intel';
+                    if (category === 'ai') return detected === 'AI Security';
+                    if (category === 'vuln') return detected === 'Vulnerabilities';
+                    if (category === 'cloud') return detected === 'Cloud & DevOps';
+                    return false;
                 });
                 renderNews(filtered);
             }
@@ -1324,7 +1388,8 @@
         const menu = document.getElementById('mobile-menu');
 
         btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
+            const isHidden = menu.classList.toggle('hidden');
+            btn.setAttribute('aria-expanded', !isHidden);
         });
 
         // 2. Navbar Glass Effect on Scroll
