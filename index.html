@@ -975,17 +975,13 @@
         // Gemini API Implementation
         // ----------------------------------------------------
 
-        const apiKey = "%VITE_GEMINI_API_KEY%"; // Set via .env file
-
         async function callGeminiAPI(systemPrompt, userPrompt) {
             if (!userPrompt.trim()) return "Please enter some text.";
 
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+            // Calls our serverless proxy (api/gemini.js); the API key stays server-side.
+            const url = "/api/gemini";
 
-            const payload = {
-                contents: [{ parts: [{ text: userPrompt }] }],
-                systemInstruction: { parts: [{ text: systemPrompt }] }
-            };
+            const payload = { systemPrompt, userPrompt };
 
             // Backoff logic: delays in ms
             const delays = [1000, 2000, 4000, 8000, 16000];
@@ -1006,16 +1002,16 @@
                             }
                         }
                         const errData = await response.json().catch(() => ({}));
-                        throw new Error(`API Error ${response.status}: ${errData?.error?.message || "Invalid Request"}`);
+                        throw new Error(`API Error ${response.status}: ${errData?.error || "Invalid Request"}`);
                     }
 
                     const data = await response.json();
-                    return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
+                    return data.text || "No response generated.";
 
                 } catch (error) {
                     console.error("Gemini API Failure:", error);
                     if (i === delays.length || error.message.includes("400") || error.message.includes("403")) {
-                        return `❌ **API Connection Failed:** ${error.message}\n\n*(Debug ID: ${apiKey.substring(0, 5)}...)*`;
+                        return `❌ **API Connection Failed:** ${error.message}`;
                     }
                 }
             }
