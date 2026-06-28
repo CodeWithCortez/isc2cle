@@ -556,7 +556,7 @@
                 <!-- Filter Buttons -->
                 <div class="flex flex-wrap gap-2">
                     <button onclick="filterNews('all')" id="filter-all"
-                        class="news-filter active px-4 py-2 rounded-full text-sm font-bold border border-isc-neon bg-isc-neon/10 text-isc-neon transition-all hover:bg-isc-neon hover:text-isc-dark">All</button>
+                        class="news-filter active px-4 py-2 rounded-full text-sm font-bold border border-white bg-white text-black transition-all hover:bg-white/90">All</button>
                     <button onclick="filterNews('threat')" id="filter-threat"
                         class="news-filter px-4 py-2 rounded-full text-sm font-bold border border-white/10 text-gray-400 transition-all hover:border-isc-accent hover:text-isc-accent">Threat Intel</button>
                     <button onclick="filterNews('ai')" id="filter-ai"
@@ -1052,16 +1052,34 @@
         }
 
         function filterNews(category) {
-            // UI State
-            document.querySelectorAll('.news-filter').forEach(btn => {
-                btn.classList.remove('active', 'border-isc-neon', 'bg-isc-neon/10', 'text-isc-neon');
-                btn.classList.add('border-white/10', 'text-gray-400');
+            const buttons = {
+                all: { active: ['bg-white', 'text-black', 'border-white'] },
+                threat: { active: ['bg-isc-accent/15', 'border-isc-accent', 'text-isc-accent'] },
+                ai: { active: ['bg-isc-purple/15', 'border-isc-purple', 'text-isc-purple'] },
+                vuln: { active: ['bg-isc-cyan/15', 'border-isc-cyan', 'text-isc-cyan'] },
+                cloud: { active: ['bg-blue-400/15', 'border-blue-400', 'text-blue-400'] }
+            };
+
+            // Reset all filter buttons to inactive state
+            Object.keys(buttons).forEach(key => {
+                const btn = document.getElementById(`filter-${key}`);
+                if (btn) {
+                    btn.classList.remove('active', 'bg-white', 'text-black', 'border-white', 
+                        'bg-isc-accent/15', 'border-isc-accent', 'text-isc-accent',
+                        'bg-isc-purple/15', 'border-isc-purple', 'text-isc-purple',
+                        'bg-isc-cyan/15', 'border-isc-cyan', 'text-isc-cyan',
+                        'bg-blue-400/15', 'border-blue-400', 'text-blue-400',
+                        'border-isc-neon', 'bg-isc-neon/10', 'text-isc-neon'
+                    );
+                    btn.classList.add('border-white/10', 'text-gray-400');
+                }
             });
 
+            // Set the active button to its corresponding active styling
             const activeBtn = document.getElementById(`filter-${category}`);
-            if (activeBtn) {
+            if (activeBtn && buttons[category]) {
                 activeBtn.classList.remove('border-white/10', 'text-gray-400');
-                activeBtn.classList.add('active', 'border-isc-neon', 'bg-isc-neon/10', 'text-isc-neon');
+                activeBtn.classList.add('active', ...buttons[category].active);
             }
 
             // Logic
