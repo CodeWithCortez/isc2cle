@@ -57,7 +57,8 @@
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center gap-4">
 
-                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none"
+                        aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
                          <i class="fa-solid fa-bars text-2xl"></i>
                     </button>
                 </div>
@@ -356,7 +357,7 @@
                         3-point executive summary suitable for leadership updates.</p>
 
                     <div class="space-y-4 mt-auto">
-                        <input type="text" id="briefing-input" placeholder="Enter cyber topic..."
+                        <input type="text" id="briefing-input" placeholder="Enter cyber topic..." aria-label="Enter threat briefing topic"
                             class="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-isc-purple transition-colors">
 
                         <button onclick="generateBriefing()" id="briefing-btn"
@@ -370,7 +371,7 @@
                             </div>
                             <button onclick="copyBriefing()" id="briefing-copy-btn"
                                 class="hidden absolute top-3 right-3 p-2 text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded border border-white/10 transition-all text-xs flex items-center gap-1"
-                                title="Copy to clipboard">
+                                title="Copy to clipboard" aria-label="Copy threat briefing to clipboard">
                                 <i class="fa-regular fa-copy"></i>
                             </button>
                         </div>
@@ -392,7 +393,7 @@
                         analyze tone, urgency, and inconsistencies to detect potential social engineering.</p>
 
                     <div class="space-y-4 mt-auto">
-                        <textarea id="phish-input" rows="3" placeholder="Paste email text here..."
+                        <textarea id="phish-input" rows="3" placeholder="Paste email text here..." aria-label="Paste suspicious email text to analyze"
                             class="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-isc-accent transition-colors resize-none"></textarea>
 
                         <button onclick="analyzePhish()" id="phish-btn"
@@ -800,14 +801,14 @@
                             <i class="fa-brands fa-linkedin-in text-lg"></i>
                         </a>
                         <a href="https://www.eventbrite.com/o/2712312206" target="_blank"
-                            class="w-10 h-10 rounded-full bg-white/5 hover:bg-[#F05537] hover:text-white flex items-center justify-center text-gray-400 transition-all duration-300" title="EventBrite">
+                            class="w-10 h-10 rounded-full bg-white/5 hover:bg-[#F05537] hover:text-white flex items-center justify-center text-gray-400 transition-all duration-300" title="EventBrite" aria-label="EventBrite">
                             <i class="fa-solid fa-ticket text-lg"></i>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-600 gap-4 text-center md:text-left">
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 gap-4 text-center md:text-left">
                 <p>&copy; 2026 ISC2 Cleveland Chapter. All rights reserved.</p>
                 <p>Design by <a href="https://www.weblytics.digital/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Weblytics</a></p>
             </div>
@@ -820,13 +821,13 @@
         // Gemini API Implementation
         // ----------------------------------------------------
 
-        async function callGeminiAPI(systemPrompt, userPrompt) {
+        async function callGeminiAPI(mode, userPrompt) {
             if (!userPrompt.trim()) return "Please enter some text.";
 
             // Calls our serverless proxy (api/gemini.js); the API key stays server-side.
             const url = "/api/gemini";
 
-            const payload = { systemPrompt, userPrompt };
+            const payload = { mode, userPrompt };
 
             // Backoff logic: delays in ms
             const delays = [1000, 2000, 4000, 8000, 16000];
@@ -878,9 +879,7 @@
             resultDiv.innerHTML = '<div class="flex items-center gap-2"><div class="loader"></div> Analyzing global threat vectors...</div>';
             copyBtn.classList.add('hidden');
 
-            const systemPrompt = "You are a CISO advisor. Provide a high-level, 3-bullet point executive summary on the cybersecurity topic provided by the user. Focus on risks and mitigation strategies. Be professional, concise, and use formatting like **Bold** for emphasis.";
-
-            const response = await callGeminiAPI(systemPrompt, input);
+            const response = await callGeminiAPI('briefing', input);
 
             // Render Result
             resultDiv.innerHTML = marked.parse(response);
@@ -927,9 +926,7 @@
             resultDiv.classList.remove('hidden');
             resultDiv.innerHTML = '<div class="flex items-center gap-2"><div class="loader"></div> Scanning for social engineering indicators...</div>';
 
-            const systemPrompt = "You are a security analyst training a user. Analyze the provided email text for phishing indicators (urgency, inconsistencies, suspicious requests, bad grammar). Provide a 'Risk Level' (Low, Medium, High) and 2-3 short reasons why. Keep it educational and concise.";
-
-            const response = await callGeminiAPI(systemPrompt, input);
+            const response = await callGeminiAPI('phishing', input);
 
             // Render Result
             resultDiv.innerHTML = marked.parse(response);
@@ -1391,7 +1388,8 @@
         const menu = document.getElementById('mobile-menu');
 
         btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
+            const isHidden = menu.classList.toggle('hidden');
+            btn.setAttribute('aria-expanded', !isHidden);
         });
 
         // 2. Navbar Glass Effect on Scroll

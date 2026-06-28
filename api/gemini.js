@@ -5,7 +5,25 @@
 
 const GEMINI_MODEL = 'gemini-2.5-flash';
 
+const SYSTEM_PROMPTS = {
+    briefing: "You are a CISO advisor. Provide a high-level, 3-bullet point executive summary on the cybersecurity topic provided by the user. Focus on risks and mitigation strategies. Be professional, concise, and use formatting like **Bold** for emphasis.",
+    phishing: "You are a security analyst training a user. Analyze the provided email text for phishing indicators (urgency, inconsistencies, suspicious requests, bad grammar). Provide a 'Risk Level' (Low, Medium, High) and 2-3 short reasons why. Keep it educational and concise."
+};
+
+const ALLOWED_ORIGINS = [
+    'https://www.isc2chapter-cleveland.us',
+    'https://isc2cle.vercel.app',
+    'http://localhost:5173',
+    'http://localhost:3000'
+];
+
 export default async function handler(req, res) {
+    // 1. CORS / Origin Verification
+    const origin = req.headers.origin;
+    if (origin && !ALLOWED_ORIGINS.includes(origin) && !origin.endsWith('.vercel.app')) {
+        return res.status(403).json({ error: 'Unauthorized request origin.' });
+    }
+
     if (req.method !== 'POST') {
         res.setHeader('Allow', 'POST');
         return res.status(405).json({ error: 'Method not allowed.' });
@@ -16,19 +34,22 @@ export default async function handler(req, res) {
         return res.status(500).json({ error: 'Server is missing GEMINI_API_KEY configuration.' });
     }
 
-    const { systemPrompt, userPrompt } = req.body || {};
+    const { mode, userPrompt } = req.body || {};
     if (typeof userPrompt !== 'string' || !userPrompt.trim()) {
         return res.status(400).json({ error: 'userPrompt is required.' });
+    }
+
+    const systemPrompt = SYSTEM_PROMPTS[mode];
+    if (!systemPrompt) {
+        return res.status(400).json({ error: 'Invalid or missing API request mode.' });
     }
 
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`;
 
     const payload = {
         contents: [{ parts: [{ text: userPrompt }] }],
+        systemInstruction: { parts: [{ text: systemPrompt }] }
     };
-    if (typeof systemPrompt === 'string' && systemPrompt.trim()) {
-        payload.systemInstruction = { parts: [{ text: systemPrompt }] };
-    }
 
     try {
         const geminiRes = await fetch(url, {
