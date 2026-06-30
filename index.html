@@ -1128,7 +1128,15 @@
                 return;
             }
 
-            const query = encodeURIComponent(`*[_type == "event"] | order(startDate asc){
+            // Get local today's date in YYYY-MM-DD format
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            const localToday = `${year}-${month}-${day}`;
+
+            // Filter for upcoming/current events (events starting today or later, or ongoing events whose end date is today or later)
+            const query = encodeURIComponent(`*[_type == "event" && (startDate >= "${localToday}" || endDate >= "${localToday}")] | order(startDate asc){
                 title,
                 eventType,
                 startDate,
@@ -1245,13 +1253,17 @@
                     btnClass = 'bg-isc-accent/20 hover:bg-isc-accent hover:text-black text-isc-accent border-isc-accent/50';
                 }
 
-                // Format Date & Time
-                const dateStr = event.startDate ? new Date(event.startDate).toLocaleDateString("en-US", {
-                    weekday: 'long',
-                    month: 'short',
-                    day: 'numeric',
-                    year: 'numeric'
-                }) : '';
+                // Format Date & Time without timezone shifting (parsing YYYY-MM-DD components directly)
+                let dateStr = '';
+                if (event.startDate) {
+                    const [yr, mo, dy] = event.startDate.split('-').map(Number);
+                    dateStr = new Date(yr, mo - 1, dy).toLocaleDateString("en-US", {
+                        weekday: 'long',
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric'
+                    });
+                }
                 const timeStr = event.startTime && event.endTime ? `${event.startTime} - ${event.endTime}` : (event.startTime || '');
 
                 // Left media area
